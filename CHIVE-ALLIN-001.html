@@ -267,11 +267,14 @@
 
   const OPP_SYMBOL={ 'CZ':'🟢', '鲸鱼':'🐋', '庄家':'🎭', '大老':'🦍', 'DEV':'🧠' };
 
-  const DIFFS={
-    inner:{ pSpawn:[800,100], pLife:[4200,1200], bDelay:[60,18] },
-    premarket:{ pSpawn:[1000,180], pLife:[4800,1500], bDelay:[90,36] },
-    outer:{ pSpawn:[1200,220], pLife:[5200,1700], bDelay:[120,54] }
-  };
+  const DIFFS = {
+  // 內盤 = 仍最快，但比你現在鬆很多
+  inner:     { pSpawn:[1200, 360], pLife:[5600, 2200], bDelay:[140, 70] },
+  // 即將開盤 = 中等
+  premarket: { pSpawn:[1400, 440], pLife:[6000, 2400], bDelay:[170, 95] },
+  // 外盤 = 最慢最佛
+  outer:     { pSpawn:[1600, 520], pLife:[6400, 2600], bDelay:[200, 120] }
+};
 
   // 旧五名保留，满足测试断言
   const BOT_PROFILE={ 'CZ':{clickBias:.65}, '鲸鱼':{clickBias:.70}, '庄家':{clickBias:.78}, '大老':{clickBias:.88}, 'DEV':{clickBias:.95} };
@@ -329,7 +332,7 @@
 
   const current={ name:'未命名', diff:'inner', opp:'赵长鹏CZ', net:'SOL', coin:'$CHIVE' };
 
-  const MOVE_CHANCE = 0.45; // 部分韭菜会移动（打地鼠感）
+  const MOVE_CHANCE = 0.25; // 部分韭菜会移动（打地鼠感）
 
   function lerp(a,b,t){return a+(b-a)*t}
   function now(){return Date.now()}
@@ -493,17 +496,28 @@
     b.addEventListener('click', ()=>{ clearTimeout(tid); onclick&&onclick(); kill(); SFX.click(); }, {once:true});
   }
   function scheduleEvents(){
-    // 🚀 币王来了（玩家双倍 10s） — 每局 1~2 次
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 币王来了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 5000+Math.random()*8000));
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 币王来了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 15000+Math.random()*8000));
+  // 🚀 幣王 ×2 → 12s（原 10s），仍然每局 1~2 次
+  timers.push(setTimeout(()=>{ if(!running) return;
+    spawnEventBadge(pLane, '🚀 币王来了 ×2 (12s)', ()=>{ doubleUntil = now()+12000; }, 3600);
+  }, 5000+Math.random()*8000));
+  timers.push(setTimeout(()=>{ if(!running) return;
+    spawnEventBadge(pLane, '🚀 币王来了 ×2 (12s)', ()=>{ doubleUntil = now()+12000; }, 3600);
+  }, 15000+Math.random()*8000));
 
-    // 🦢 黑天鹅闪崩（对手变慢 10s） — 每局 1~2 次
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 8000+Math.random()*9000));
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 20000+Math.random()*8000));
+  // 🦢 黑天鵝（對手變慢） → 12s（原 10s），保留 1~2 次
+  timers.push(setTimeout(()=>{ if(!running) return;
+    spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 12s)', ()=>{ swanUntil = now()+12000; }, 3200);
+  }, 8000+Math.random()*9000));
+  timers.push(setTimeout(()=>{ if(!running) return;
+    spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 12s)', ()=>{ swanUntil = now()+12000; }, 3200);
+  }, 20000+Math.random()*8000));
 
-    // 槓杆 x2/x5/x10（随机一种，玩家 10s）— 每局一次
-    timers.push(setTimeout(()=>{ if(!running||levSpawned) return; levSpawned=true; const opts=[2,5,10]; const m=opts[Math.floor(Math.random()*opts.length)]; spawnEventBadge(pLane, '💥 槓杆 ×'+m+' (10s)', ()=>{ levMul=m; levUntil=now()+10000; }, 3600); }, 12000+Math.random()*12000));
-  }
+  // 💥 槓桿 → 機率不變，但時間拉長到 12s
+  timers.push(setTimeout(()=>{ if(!running||levSpawned) return;
+    levSpawned=true; const opts=[2,5,10]; const m=opts[Math.floor(Math.random()*opts.length)];
+    spawnEventBadge(pLane, '💥 槓杆 ×'+m+' (12s)', ()=>{ levMul=m; levUntil=now()+12000; }, 3800);
+  }, 12000+Math.random()*12000));
+}
 
   function clearTimers(){ timers.forEach(t=>clearTimeout(t)); timers=[]; }
 
@@ -719,5 +733,6 @@
   </script>
 </body>
 </html>
+
 
 
