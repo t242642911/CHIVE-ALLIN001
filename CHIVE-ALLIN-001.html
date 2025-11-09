@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>韭心箴言｜對戰版 v2</title>
-  <meta name="description" content="對戰版：內盤/即將開盤/外盤 × SOL/BSC × 對手（CZ/鯨魚/庄家/大老/DEV + 自訂/擴充名單）。含 3→2→1 倒數、隨機 MEME 幣名、🚀幣王來了(10s 雙倍)、🦢黑天鵝(對手降速10s)、槓桿x2/x5/x10(10s)。可疊加。" />
+  <title>韭心箴言</title>
+  <meta name="description" content="对战版：内盘/即将开盘/外盘 × SOL/BSC × 对手（CZ/鲸鱼/庄家/大老/DEV + 自订/扩充名单）。含 3→2→1 倒数、随机 MEME 币名、🚀币王来了(10s 双倍)、🦢黑天鹅(对手降速10s)、槓杆x2/x5/x10(10s)。可叠加。" />
   <meta name="theme-color" content="#10b981" />
   <style>
     :root{ --bg:#0b1020; --panel:#0e1425; --txt:#e6f0ff; --muted:#9fb3d5; --ring:0 0 0 6px rgba(34,197,94,.2); }
@@ -30,7 +31,7 @@
     .card{background:linear-gradient(180deg,#0f172a,#0b1226); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:16px; box-shadow:0 20px 60px rgba(0,0,0,.35)}
     .panel-title{display:flex; justify-content:space-between; align-items:center; gap:12px}
 
-    /* 對戰場景 */
+    /* 对战场景 */
     .arena{display:grid; grid-template-columns:1fr 1fr; gap:14px}
     @media (max-width:980px){.arena{grid-template-columns:1fr}}
     .playground{position:relative; height:460px; border-radius:16px; overflow:hidden; background:linear-gradient(180deg,#0f1630,#0b1226)}
@@ -42,14 +43,14 @@
     button.primary{background:linear-gradient(145deg,#22c55e,#16a34a); color:#06250f; border:none}
     button:focus-visible{outline:none; box-shadow:var(--ring)}
 
-    /* 表單 */
+    /* 表单 */
     form{display:grid; grid-template-columns:1.1fr .9fr .9fr .9fr auto; gap:10px; align-items:end}
     @media (max-width:1100px){form{grid-template-columns:1fr 1fr 1fr;}}
     @media (max-width:720px){form{grid-template-columns:1fr 1fr;}}
     label{font-size:13px; color:var(--muted)}
     input,select{width:100%; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:#0f1730; color:var(--txt)}
 
-    /* 小韭菜 / 障礙物 */
+    /* 小韭菜 / 障碍物 */
     .chive,.hazard{position:absolute; width:64px; height:64px; transform: translate(-50%,-50%) scale(.92); display:grid; place-items:center; cursor:pointer; filter:drop-shadow(0 6px 12px rgba(0,0,0,.35)); animation:pop .22s ease-out}
     .chive:hover,.hazard:hover{transform: translate(-50%,-50%) scale(1.02)}
     @keyframes pop{from{opacity:0; transform: translate(-50%,-48%) scale(.6)} to{opacity:1; transform:translate(-50%,-50%) scale(.92)}}
@@ -58,16 +59,16 @@
     .leaf{fill:#86efac} .leaf2{fill:#34d399} .band{fill:#fde68a} .face{fill:#14532d}
     .hazard-shape{fill:#ef4444; stroke:#991b1b; stroke-width:2}
 
-    /* 草地與小韭菜背景 */
+    /* 草地与小韭菜背景 */
     .playground::before{content:""; position:absolute; inset:0; z-index:0; opacity:.9; background:
       radial-gradient(1200px 800px at 80% -10%, rgba(251,146,60,.18), transparent 60%),
       radial-gradient(900px 700px at 8% 110%, rgba(134,239,172,.16), transparent 55%),
-      var(--bg-img); /* 👈 用你的圖 */
+      var(--bg-img); /* 👈 用你的图 */
       url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" fill="%2310291f"/><g opacity="0.9"><circle cx="20" cy="140" r="2" fill="%2339ff88"/><circle cx="80" cy="120" r="2" fill="%2339ff88"/><circle cx="140" cy="130" r="2" fill="%2339ff88"/><path d="M18 138 C18 128,22 118,30 110 C28 125,28 132,30 138 Z" fill="%235eead4"/><path d="M78 118 C78 108,82 98,90 90 C88 105,88 112,90 118 Z" fill="%2322c55e"/><path d="M138 128 C138 118,142 108,150 100 C148 115,148 122,150 128 Z" fill="%2322c55e"/></g></svg>');
       background-size: auto, auto, 220px 220px; background-repeat: no-repeat, no-repeat, repeat; background-position: center, center, 0 0;}
     .playground > *{position:relative; z-index:1}
 
-    /* 飄字 */
+    /* 飘字 */
     .float{position:absolute; pointer-events:none; font-weight:900; color:#39ff88; text-shadow:0 2px 8px rgba(0,0,0,.45); animation:floatUp .8s ease-out forwards}
     .float.neg{color:#f87171}
     @keyframes floatUp{from{opacity:0; transform:translate(-50%,-40%) scale(.9)} 30%{opacity:1} to{opacity:0; transform:translate(-50%,-120%) scale(1)}}
@@ -76,10 +77,10 @@
     .event{position:absolute; left:50%; top:14%; transform:translate(-50%,-50%); z-index:4; background:rgba(14,22,46,.85); border:1px solid rgba(255,255,255,.16); padding:8px 12px; border-radius:12px; font-weight:800; cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,.35)}
     .event:hover{background:rgba(14,22,46,.95)}
 
-    /* 倒數遮罩 */
+    /* 倒数遮罩 */
     .countdown{position:absolute; inset:0; display:grid; place-items:center; background:rgba(6,10,20,.65); z-index:6; font-weight:900; font-size:92px; letter-spacing:1px}
 
-    /* 結算與紀錄 */
+    /* 结算与纪录 */
     .modal{position:fixed; inset:0; display:none; place-items:center; background:rgba(8,12,24,.6); backdrop-filter: blur(6px); z-index:9999}
     .box{background:linear-gradient(180deg,#0f172a,#0b1226); border:1px solid rgba(255,255,255,.1); border-radius:16px; padding:18px; width:min(860px,92%); text-align:center}
     table{width:100%; border-collapse:collapse; font-size:14px}
@@ -92,8 +93,8 @@
     <div class="container brand">
       <div class="logo">🌱</div>
       <div>
-        <h1>韭心箴言｜對戰版 v2</h1>
-        <div class="tag">精神無限，本金有限。幣圈的信仰，有時只值 10U。</div>
+        <h1>韭心箴言</h1>
+        <div class="tag">精神无限，本金有限。币圈的信仰，有时只值 10U。</div>
       </div>
     </div>
   </header>
@@ -102,53 +103,53 @@
     <section class="hero">
       <div>
         <span class="chip">🎯 作品定位</span>
-        <h2>幣圈諷刺／情緒金融／Meme 敘事圖像</h2>
-        <p class="lead">1 分鐘快節奏：點韭菜 +10U、紅色干擾物 -10U。支援鏈：SOL / BSC（同刻大量生成）。</p>
+        <h2>币圈讽刺／情绪金融／Meme 叙事图像</h2>
+        <p class="lead">1 分钟快节奏：点韭菜 +10U、红色干扰物 -10U。支援链：SOL / BSC（同刻大量生成）。</p>
       </div>
       <div class="card">
-        <div class="panel-title"><h3>對戰設定</h3></div>
+        <div class="panel-title"><h3>对战设定</h3></div>
         <form id="cfg">
           <div>
-            <label for="playerName">韭菜名稱</label>
-            <input id="playerName" placeholder="輸入你的韭菜名，例如：小綠" maxlength="12" />
+            <label for="playerName">韭菜名称</label>
+            <input id="playerName" placeholder="输入你的韭菜名，例如：小绿" maxlength="12" />
           </div>
           <div>
-            <label for="difficulty">難度（節奏）</label>
+            <label for="difficulty">难度（节奏）</label>
             <select id="difficulty">
-              <option value="inner">內盤（最快）</option>
-              <option value="premarket">即將開盤（中等）</option>
-              <option value="outer">外盤（最慢）</option>
+              <option value="inner">内盘（最快）</option>
+              <option value="premarket">即将开盘（中等）</option>
+              <option value="outer">外盘（最慢）</option>
             </select>
           </div>
           <div>
-            <label for="chain">鏈</label>
+            <label for="chain">链</label>
             <select id="chain">
               <option value="SOL" selected>SOL</option>
               <option value="BSC">BSC（同刻大量生成）</option>
             </select>
           </div>
           <div>
-            <label>對手</label>
+            <label>对手</label>
             <div style="display:flex; gap:8px; align-items:end">
-              <button type="button" id="chooseOppBtn">📋 選擇對手</button>
-              <input id="opponent" type="text" value="趙長鵬CZ" style="display:none"/>
-              <span class="score" id="chosenOpp">趙長鵬CZ</span>
-              <button type="button" id="addOppBtn">➕對手資料</button>
+              <button type="button" id="chooseOppBtn">📋 选择对手</button>
+              <input id="opponent" type="text" value="赵长鹏CZ" style="display:none"/>
+              <span class="score" id="chosenOpp">赵长鹏CZ</span>
+              <button type="button" id="addOppBtn">➕对手资料</button>
             </div>
           </div>
-          <button type="button" class="primary" id="startAll">▶ 開始對戰</button>
+          <button type="button" class="primary" id="startAll">▶ 开始对战</button>
         </form>
         <div id="oppInfo" class="card" style="margin-top:12px; padding:12px; background:rgba(15,23,42,.5); border:1px solid rgba(255,255,255,.08)">
-          <div style="font-weight:700; margin-bottom:6px">對手簡介</div>
-          <div id="oppInfoBody" class="tag">請先在上方選擇對手，這裡會顯示他的資產、難度與一句話介紹。</div>
+          <div style="font-weight:700; margin-bottom:6px">对手简介</div>
+          <div id="oppInfoBody" class="tag">请先在上方选择对手，这里会显示他的资产、难度与一句话介绍。</div>
         </div>
       </div>
     </section>
 
     <section class="card">
       <div class="panel-title">
-        <h3>對戰場景（限時 1 分鐘，不斷加速）</h3>
-        <div class="hud">⏱ 剩餘 <span id="rest">60.0s</span>｜🪙 幣：<span class="score" id="coinTag">$CHIVE</span>｜🐣 玩家 <span class="score" id="pScore">0</span> U｜APM <span class="score" id="pApm">0</span>｜🤖 對手 <span class="score" id="bScore">0</span> U｜APM <span class="score" id="bApm">0</span></div>
+        <h3>对战场景（限时 1 分钟，不断加速）</h3>
+        <div class="hud">⏱ 剩馀 <span id="rest">60.0s</span>｜🪙 币：<span class="score" id="coinTag">$CHIVE</span>｜🐣 玩家 <span class="score" id="pScore">0</span> U｜APM <span class="score" id="pApm">0</span>｜🤖 对手 <span class="score" id="bScore">0</span> U｜APM <span class="score" id="bApm">0</span></div>
       </div>
       <div class="arena" id="arena">
         <div class="playground" id="pLane"
@@ -156,7 +157,7 @@
   <div class="lane-title">玩家：<b id="pName">未命名</b></div>
 </div>
 
-<!-- 對手場背景 -->
+<!-- 对手场背景 -->
 <div class="playground" id="bLane"
      style="--bg-img:url('https://t242642911.github.io/CHIVE-ALLIN001/BOSS2.png')">
   <div class="lane-title"><b id="bName">CZ 🟢</b></div>
@@ -164,17 +165,17 @@
       </div>
       <div class="ctrls" style="margin-top:10px">
         <button id="stopBtn">■ 停止</button>
-        <button id="muteBtn">🔊 聲音開</button>
+        <button id="muteBtn">🔊 声音开</button>
         <button id="surrenderBtn">🏳 投降</button>
-        <span class="tag">提示：點到韭菜「+10U」，點到奇怪物「-10U」。越接近 0 秒越快。BSC 鏈會同刻大量生成。事件可疊加。</span>
+        <span class="tag">提示：点到韭菜「+10U」，点到奇怪物「-10U」。越接近 0 秒越快。BSC 链会同刻大量生成。事件可叠加。</span>
       </div>
     </section>
   </main>
 
-  <!-- 對手選擇器（顯示全部對手的框） -->
+  <!-- 对手选择器（显示全部对手的框） -->
   <div class="modal" id="oppModal" style="display:none;">
     <div class="box">
-      <h3>選擇對手</h3>
+      <h3>选择对手</h3>
       <div class="ctrls seg" style="justify-content:center; margin-bottom:10px">
         <button class="primary" data-tier="ALL">📚 全部</button>
         <button data-tier="GOD">🟣 GOD</button>
@@ -183,13 +184,13 @@
         <button data-tier="SR">🟡 SR</button>
         <button data-tier="R">🟠 R</button>
         <button data-tier="N">⚪ N</button>
-        <button id="oppClose">關閉</button>
+        <button id="oppClose">关闭</button>
       </div>
       <div id="oppGrid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; text-align:left; max-height:420px; overflow:auto; padding-right:6px"></div>
       <hr style="border-color:rgba(255,255,255,.08)">
-      <h4 style="margin:6px 0 8px">自訂對手</h4>
+      <h4 style="margin:6px 0 8px">自订对手</h4>
       <div class="ctrls" style="flex-wrap:wrap">
-        <input id="customOppName" placeholder="輸入名稱，如：某KOL" style="flex:2; min-width:200px">
+        <input id="customOppName" placeholder="输入名称，如：某KOL" style="flex:2; min-width:200px">
         <select id="customOppTier" style="flex:1; min-width:140px">
           <option value="N">⚪ N（最慢）</option>
           <option value="R">🟠 R</option>
@@ -198,18 +199,18 @@
           <option value="UR">🔥 UR</option>
           <option value="GOD">🟣 GOD（最快）</option>
         </select>
-        <button id="customOppAdd" class="primary">加入名單</button>
+        <button id="customOppAdd" class="primary">加入名单</button>
       </div>
     </div>
   </div>
 
   <div class="modal" id="modal"><div class="box">
-    <h3>時間到！</h3>
-    <p>玩家 <b id="mP">0</b> U（APM <b id="mPA">0</b>）｜對手 <b id="mB">0</b> U（APM <b id="mBA">0</b>）</p>
+    <h3>时间到！</h3>
+    <p>玩家 <b id="mP">0</b> U（APM <b id="mPA">0</b>）｜对手 <b id="mB">0</b> U（APM <b id="mBA">0</b>）</p>
     <p id="mR">—</p>
     <div class="ctrls" style="justify-content:center">
-      <button class="primary" id="restart">再來一局</button>
-      <button id="close">返回設定</button>
+      <button class="primary" id="restart">再来一局</button>
+      <button id="close">返回设定</button>
     </div>
   </div></div>
 
@@ -242,21 +243,21 @@
   const logTBody=document.querySelector('#log tbody');
   const tip=$('#tip');
 
-  // ========= 狀態 =========
+  // ========= 状态 =========
   let round=0, history=[];
   let running=false, startAt=0, endAt=0;
   let pScore=0, bScore=0; let pClicks=0, bClicks=0;
   let spawnTimerP=null, spawnTimerB=null, tickTimer=null;
-  let timers=[]; // 事件與倒數計時器
+  let timers=[]; // 事件与倒数计时器
 
-  // 事件狀態
-  let doubleUntil=0; // 幣王來了：玩家得分 x2
-  let swanUntil=0;   // 黑天鵝：對手延遲 x2（變慢）
-  let levUntil=0;    // 槓桿有效期
-  let levMul=1;      // 1 / 2 / 5 / 10（僅玩家）
-  let levSpawned=false; // 每局僅一次
+  // 事件状态
+  let doubleUntil=0; // 币王来了：玩家得分 x2
+  let swanUntil=0;   // 黑天鹅：对手延迟 x2（变慢）
+  let levUntil=0;    // 槓杆有效期
+  let levMul=1;      // 1 / 2 / 5 / 10（仅玩家）
+  let levSpawned=false; // 每局仅一次
 
-  // 進場倒數遮罩
+  // 进场倒数遮罩
   function showCountdown(cb){
     const cover=document.createElement('div'); cover.className='countdown'; cover.textContent='3';
     $('#arena').appendChild(cover);
@@ -264,7 +265,7 @@
     timers.push(setTimeout(step,740));
   }
 
-  const OPP_SYMBOL={ 'CZ':'🟢', '鯨魚':'🐋', '庄家':'🎭', '大老':'🦍', 'DEV':'🧠' };
+  const OPP_SYMBOL={ 'CZ':'🟢', '鲸鱼':'🐋', '庄家':'🎭', '大老':'🦍', 'DEV':'🧠' };
 
   const DIFFS={
     inner:{ pSpawn:[800,100], pLife:[4200,1200], bDelay:[60,18] },
@@ -272,19 +273,19 @@
     outer:{ pSpawn:[1200,220], pLife:[5200,1700], bDelay:[120,54] }
   };
 
-  // 舊五名保留，滿足測試斷言
-  const BOT_PROFILE={ 'CZ':{clickBias:.65}, '鯨魚':{clickBias:.70}, '庄家':{clickBias:.78}, '大老':{clickBias:.88}, 'DEV':{clickBias:.95} };
+  // 旧五名保留，满足测试断言
+  const BOT_PROFILE={ 'CZ':{clickBias:.65}, '鲸鱼':{clickBias:.70}, '庄家':{clickBias:.78}, '大老':{clickBias:.88}, 'DEV':{clickBias:.95} };
 
-  // 分級倍率（越高越快）
+  // 分级倍率（越高越快）
   const TIER_BIAS={ GOD:.99, UR:.95, SSR:.88, SR:.78, R:.70, N:.60 };
   const TIER_SYMBOL={ GOD:'🟣', UR:'🔥', SSR:'⭐', SR:'🟡', R:'🟠', N:'⚪' };
 
-  // 對手名單（可擴充）
+  // 对手名单（可扩充）
   const ROSTER=[
-    {name:'中本聰', tier:'GOD'},
-    {name:'趙長鵬CZ', tier:'UR'},{name:'孫宇晨', tier:'UR'},{name:'薛蠻子', tier:'UR'},{name:'吳忌寒', tier:'UR'},{name:'徐明星', tier:'UR'},{name:'杜均', tier:'UR'},{name:'何一', tier:'UR'},{name:'李林', tier:'UR'},{name:'V神', tier:'UR'},{name:'Roger Ver', tier:'UR'},{name:'Yi He', tier:'UR'},{name:'HongKongDoll', tier:'UR'},
-    {name:'李啓威', tier:'SSR'},{name:'BM', tier:'SSR'},{name:'沈波', tier:'SSR'},{name:'趙東', tier:'SSR'},{name:'周碩基', tier:'SSR'},{name:'李笑來', tier:'SSR'},{name:'達鴻飛', tier:'SSR'},{name:'何斌', tier:'SSR'},{name:'長鋏', tier:'SSR'},{name:'帥初', tier:'SSR'},{name:'韓峯', tier:'SSR'},{name:'江卓爾', tier:'SSR'},{name:'呂旭軍', tier:'SSR'},{name:'王寶財', tier:'SSR'},{name:'寶二爺', tier:'SSR'},{name:'Dujun(KOL)', tier:'SSR'},{name:'WolfyXBT', tier:'SSR'},{name:'Star(OKX)', tier:'SSR'},{name:'Phyrex', tier:'SSR'},{name:'0xWizard', tier:'SSR'},{name:'余弦', tier:'SSR'},{name:'花花', tier:'SSR'},{name:'大宇', tier:'SSR'},{name:'熬鷹資本', tier:'SSR'},{name:'川沐', tier:'SSR'},{name:'Ai姨', tier:'SSR'},{name:'Goku很Cool', tier:'SSR'},{name:'Jason', tier:'SSR'},{name:'Moonlight', tier:'SSR'},{name:'余烬', tier:'SSR'},{name:'Niner九兒', tier:'SSR'},{name:'火星人', tier:'SSR'},{name:'趙國峯', tier:'SSR'},{name:'申屠青春', tier:'SSR'},{name:'潘國力', tier:'SSR'},{name:'黃連金', tier:'SSR'},{name:'初夏虎', tier:'SSR'},{name:'朱嘉偉', tier:'SSR'},{name:'談國鵬', tier:'SSR'},{name:'巨蟹', tier:'SSR'},{name:'高原飛燕', tier:'SSR'},{name:'藝緣寶YYBC合夥人 —', tier:'SSR'},
-    {name:'Benmo.eth', tier:'SR'},{name:'AB Kuai', tier:'SR'},{name:'子時', tier:'SR'},{name:'潛水觀察員', tier:'SR'},{name:'冷靜冷靜', tier:'SR'},{name:'Rui', tier:'SR'},{name:'Sea', tier:'SR'},{name:'Bruce', tier:'SR'},{name:'Rocky', tier:'SR'},
+    {name:'中本聪', tier:'GOD'},
+    {name:'赵长鹏CZ', tier:'UR'},{name:'孙宇晨', tier:'UR'},{name:'薛蛮子', tier:'UR'},{name:'吴忌寒', tier:'UR'},{name:'徐明星', tier:'UR'},{name:'杜均', tier:'UR'},{name:'何一', tier:'UR'},{name:'李林', tier:'UR'},{name:'V神', tier:'UR'},{name:'Roger Ver', tier:'UR'},{name:'Yi He', tier:'UR'},{name:'HongKongDoll', tier:'UR'},
+    {name:'李啓威', tier:'SSR'},{name:'BM', tier:'SSR'},{name:'沉波', tier:'SSR'},{name:'赵东', tier:'SSR'},{name:'周硕基', tier:'SSR'},{name:'李笑来', tier:'SSR'},{name:'达鸿飞', tier:'SSR'},{name:'何斌', tier:'SSR'},{name:'长铗', tier:'SSR'},{name:'帅初', tier:'SSR'},{name:'韩峯', tier:'SSR'},{name:'江卓尔', tier:'SSR'},{name:'吕旭军', tier:'SSR'},{name:'王宝财', tier:'SSR'},{name:'宝二爷', tier:'SSR'},{name:'Dujun(KOL)', tier:'SSR'},{name:'WolfyXBT', tier:'SSR'},{name:'Star(OKX)', tier:'SSR'},{name:'Phyrex', tier:'SSR'},{name:'0xWizard', tier:'SSR'},{name:'余弦', tier:'SSR'},{name:'花花', tier:'SSR'},{name:'大宇', tier:'SSR'},{name:'熬鹰资本', tier:'SSR'},{name:'川沐', tier:'SSR'},{name:'Ai姨', tier:'SSR'},{name:'Goku很Cool', tier:'SSR'},{name:'Jason', tier:'SSR'},{name:'Moonlight', tier:'SSR'},{name:'余烬', tier:'SSR'},{name:'Niner九儿', tier:'SSR'},{name:'火星人', tier:'SSR'},{name:'赵国峯', tier:'SSR'},{name:'申屠青春', tier:'SSR'},{name:'潘国力', tier:'SSR'},{name:'黄连金', tier:'SSR'},{name:'初夏虎', tier:'SSR'},{name:'朱嘉伟', tier:'SSR'},{name:'谈国鹏', tier:'SSR'},{name:'巨蟹', tier:'SSR'},{name:'高原飞燕', tier:'SSR'},{name:'艺缘宝YYBC合伙人 —', tier:'SSR'},
+    {name:'Benmo.eth', tier:'SR'},{name:'AB Kuai', tier:'SR'},{name:'子时', tier:'SR'},{name:'潜水观察员', tier:'SR'},{name:'冷静冷静', tier:'SR'},{name:'Rui', tier:'SR'},{name:'Sea', tier:'SR'},{name:'Bruce', tier:'SR'},{name:'Rocky', tier:'SR'},
     {name:'Ru7', tier:'R'},{name:'Cindy胖迪', tier:'R'},{name:'KingPan', tier:'R'},
     {name:'XinGPT', tier:'N'},{name:'BlueFox', tier:'N'},{name:'Dot王子', tier:'N'},{name:'MoonApe', tier:'N'},{name:'CryptoMaid', tier:'N'},{name:'JamesX', tier:'N'},{name:'小刀', tier:'N'},{name:'ZeroValue', tier:'N'}
   ];
@@ -326,16 +327,16 @@
     BSC: { burst:[2,5], hazardBias: 0.05 }
   };
 
-  const current={ name:'未命名', diff:'inner', opp:'趙長鵬CZ', net:'SOL', coin:'$CHIVE' };
+  const current={ name:'未命名', diff:'inner', opp:'赵长鹏CZ', net:'SOL', coin:'$CHIVE' };
 
-  const MOVE_CHANCE = 0.45; // 部分韭菜會移動（打地鼠感）
+  const MOVE_CHANCE = 0.45; // 部分韭菜会移动（打地鼠感）
 
   function lerp(a,b,t){return a+(b-a)*t}
   function now(){return Date.now()}
-  function labelOf(d){ return d==='inner'?'內盤': d==='premarket'?'即將開盤':'外盤'; }
+  function labelOf(d){ return d==='inner'?'内盘': d==='premarket'?'即将开盘':'外盘'; }
   function resetScores(){ pScore=0; bScore=0; pClicks=0; bClicks=0; pScoreEl.textContent=pScore; bScoreEl.textContent=bScore; pApmEl.textContent='0'; bApmEl.textContent='0'; }
 
-  // ========= 幣名生成 =========
+  // ========= 币名生成 =========
   const COIN_BANK=['PEPE','DOGE','SHIB','BONK','WIF','FLOKI','CAT','PONKE','HAMA','MOG','GME','ROAR','FOMO','APU','BABY','MOON','LUNA','RUG'];
   function genCoin(){
     const pre=['MOON','SUPER','HYPER','BABY','LIL','SPACE','META','PEPE','DOGE','BONK','CAT','PONKE','MOG','WIF'];
@@ -384,7 +385,7 @@
     }
   }
 
-  // ========= 移動邏輯（打地鼠感） =========
+  // ========= 移动逻辑（打地鼠感） =========
   function startDrift(el, lane){
     let alive=true; el.dataset.alive='1';
     const r=()=>lane.getBoundingClientRect();
@@ -395,7 +396,7 @@
       const rect=r();
       let x=parseFloat(el.style.left), y=parseFloat(el.style.top);
       x+=dx; y+=dy;
-      // 邊界反彈
+      // 边界反弹
       if(x<32){x=32; dx*=-1} if(x>rect.width-32){x=rect.width-32; dx*=-1}
       if(y<48){y=48; dy*=-1} if(y>rect.height-36){y=rect.height-36; dy*=-1}
       el.style.left=x+'px'; el.style.top=y+'px';
@@ -405,7 +406,7 @@
     return ()=>{ alive=false; el.dataset.alive='0'; };
   }
 
-  // ========= 生成/點擊 =========
+  // ========= 生成/点击 =========
   function spawnOne(lane,isBot,progress){
     const isHazard = Math.random() < hazardRate(progress);
     const el=document.createElement('div'); el.className=isHazard?'hazard':'chive'; el.innerHTML=isHazard?hazardSVG():chiveSVG();
@@ -414,10 +415,10 @@
     lane.appendChild(el); SFX.pop();
 
     const conf=DIFFS[current.diff];
-    // 消失速度：越後面越快（life 越短）
+    // 消失速度：越后面越快（life 越短）
     const life= lerp(conf.pLife[0], conf.pLife[1], progress) + Math.random()*260;
 
-    // 部分韭菜會移動（打地鼠），障礙物不移動
+    // 部分韭菜会移动（打地鼠），障碍物不移动
     let stopDrift=null; if(!isHazard && Math.random()<MOVE_CHANCE){ stopDrift = startDrift(el, lane); }
 
     if(!isBot){
@@ -426,7 +427,7 @@
         clearTimeout(timer); if(stopDrift) stopDrift();
         const lr = lane.getBoundingClientRect(); const fx = (e.clientX || (lr.left + parseFloat(el.style.left))); const fy = (e.clientY || (lr.top + parseFloat(el.style.top)));
         const tNow=now();
-        const levOnly = (tNow<levUntil)?levMul:1; // 幣王不影響負分，負分只吃槓桿
+        const levOnly = (tNow<levUntil)?levMul:1; // 币王不影响负分，负分只吃槓杆
         if(isHazard){
           addScore('p', -10);
           SFX.buzz();
@@ -443,7 +444,7 @@
       const prof=BOT_PROFILE[current.opp]||BOT_PROFILE['CZ'];
       const baseDelay= lerp(conf.bDelay[0], conf.bDelay[1], progress);
       const bias = (current.opp in BOT_PROFILE)? (BOT_PROFILE[current.opp].clickBias) : getBotBias(current.opp); // 越接近 1 越快
-      const slow = (now()<swanUntil)? 2 : 1; // 黑天鵝：對手變慢
+      const slow = (now()<swanUntil)? 2 : 1; // 黑天鹅：对手变慢
       const delay = Math.max(10, (baseDelay * slow) * (1.0 - 0.35*(bias)) + Math.random()*baseDelay*0.25);
       const botTimer=setTimeout(()=>{
         const fx=parseFloat(el.style.left); const fy=parseFloat(el.style.top);
@@ -461,15 +462,15 @@
     if(!running) return;
     const t=now(); const progress = Math.min(1,(t-startAt)/60000);
     const conf=DIFFS[current.diff];
-    // 生成速度：越後面越快（間隔越短）
-    const nextP= lerp(conf.pSpawn[0], conf.pSpawn[1], progress) + Math.random()*160; // 玩家生成間隔
+    // 生成速度：越后面越快（间隔越短）
+    const nextP= lerp(conf.pSpawn[0], conf.pSpawn[1], progress) + Math.random()*160; // 玩家生成间隔
 
-    // 玩家場：依鏈決定 burst
+    // 玩家场：依链决定 burst
     const bp = burstCount(progress);
     for(let i=0;i<bp;i++){ spawnOne(pLane,false,progress); }
     spawnTimerP=setTimeout(loopSpawn, nextP);
 
-    // 對手場：略快 + 同步 burst
+    // 对手场：略快 + 同步 burst
     const nextB= Math.max(50, nextP*0.8);
     const bb = burstCount(progress);
     for(let i=0;i<bb;i++){ spawnOne(bLane,true,progress); }
@@ -484,7 +485,7 @@
     tickTimer=setTimeout(tick, 120);
   }
 
-  // ========= 事件：🚀 幣王 / 🦢 黑天鵝 / 槓桿 =========
+  // ========= 事件：🚀 币王 / 🦢 黑天鹅 / 槓杆 =========
   function spawnEventBadge(lane, text, onclick, life=3000){
     const b=document.createElement('button'); b.className='event'; b.textContent=text; lane.appendChild(b);
     const kill=()=>{ b.classList.add('vanish'); timers.push(setTimeout(()=>b.remove(), 220)); };
@@ -492,16 +493,16 @@
     b.addEventListener('click', ()=>{ clearTimeout(tid); onclick&&onclick(); kill(); SFX.click(); }, {once:true});
   }
   function scheduleEvents(){
-    // 🚀 幣王來了（玩家雙倍 10s） — 每局 1~2 次
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 幣王來了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 5000+Math.random()*8000));
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 幣王來了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 15000+Math.random()*8000));
+    // 🚀 币王来了（玩家双倍 10s） — 每局 1~2 次
+    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 币王来了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 5000+Math.random()*8000));
+    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(pLane, '🚀 币王来了 ×2 (10s)', ()=>{ doubleUntil = now()+10000; }, 3200); }, 15000+Math.random()*8000));
 
-    // 🦢 黑天鵝閃崩（對手變慢 10s） — 每局 1~2 次
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鵝(對手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 8000+Math.random()*9000));
-    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鵝(對手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 20000+Math.random()*8000));
+    // 🦢 黑天鹅闪崩（对手变慢 10s） — 每局 1~2 次
+    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 8000+Math.random()*9000));
+    timers.push(setTimeout(()=>{ if(!running) return; spawnEventBadge(bLane, '🦢 黑天鹅(对手慢 10s)', ()=>{ swanUntil = now()+10000; }, 3000); }, 20000+Math.random()*8000));
 
-    // 槓桿 x2/x5/x10（隨機一種，玩家 10s）— 每局一次
-    timers.push(setTimeout(()=>{ if(!running||levSpawned) return; levSpawned=true; const opts=[2,5,10]; const m=opts[Math.floor(Math.random()*opts.length)]; spawnEventBadge(pLane, '💥 槓桿 ×'+m+' (10s)', ()=>{ levMul=m; levUntil=now()+10000; }, 3600); }, 12000+Math.random()*12000));
+    // 槓杆 x2/x5/x10（随机一种，玩家 10s）— 每局一次
+    timers.push(setTimeout(()=>{ if(!running||levSpawned) return; levSpawned=true; const opts=[2,5,10]; const m=opts[Math.floor(Math.random()*opts.length)]; spawnEventBadge(pLane, '💥 槓杆 ×'+m+' (10s)', ()=>{ levMul=m; levUntil=now()+10000; }, 3600); }, 12000+Math.random()*12000));
   }
 
   function clearTimers(){ timers.forEach(t=>clearTimeout(t)); timers=[]; }
@@ -509,7 +510,7 @@
   function endRound(cause){
     running=false; clearTimeout(spawnTimerP); clearTimeout(spawnTimerB); clearTimeout(tickTimer); clearTimers();
     const elapsed = Math.max(16, Math.min(endAt, now()) - startAt); // ms
-    const playedS = Math.round(elapsed/100)/10; // 秒（一位小數）
+    const playedS = Math.round(elapsed/100)/10; // 秒（一位小数）
 
     const pA = apm(pClicks, elapsed), bA = apm(bClicks, elapsed);
     pApmEl.textContent=pA; bApmEl.textContent=bA;
@@ -518,13 +519,13 @@
 
     const margin = pScore - bScore;
     let verdict = '';
-    if(cause==='surrender')      verdict = '你投降了（中途結束）';
-    else if(margin>0)            verdict = '你贏了（多軍強勢）';
-    else if(margin<0)            verdict = '你輸了（被收割）';
+    if(cause==='surrender')      verdict = '你投降了（中途结束）';
+    else if(margin>0)            verdict = '你赢了（多军强势）';
+    else if(margin<0)            verdict = '你输了（被收割）';
     else                         verdict = '平手';
 
     const oppSym = (TIER_SYMBOL[tierOf(current.opp)]||'');
-    const detail = `幣：${current.coin}｜難度：${labelOf(current.diff)}｜鏈：${current.net}｜對手：${current.opp} ${oppSym}｜用時：約 ${playedS}s｜APM：你 ${pA} / 對手 ${bA}｜淨分差：${Math.abs(margin)} U`;
+    const detail = `币：${current.coin}｜难度：${labelOf(current.diff)}｜链：${current.net}｜对手：${current.opp} ${oppSym}｜用时：约 ${playedS}s｜APM：你 ${pA} / 对手 ${bA}｜淨分差：${Math.abs(margin)} U`;
     mR.innerHTML = `<div style="line-height:1.7"><div><b>${verdict}</b></div><div>${detail}</div></div>`;
     modal.style.display='grid';
 
@@ -547,16 +548,16 @@
     current.coin = genCoin(); coinTag.textContent=current.coin;
     pNameEl.textContent=current.name; bNameEl.textContent=current.opp + ' ' + (TIER_SYMBOL[tierOf(current.opp)]||''); updateOppInfo(current.opp);
 
-    // 清場與重置
+    // 清场与重置
     pLane.querySelectorAll('.chive,.hazard,.event').forEach(n=>n.remove());
     bLane.querySelectorAll('.chive,.hazard,.event').forEach(n=>n.remove());
     resetScores(); SFX.resume(); clearTimers();
 
-    // 重置事件狀態
+    // 重置事件状态
     doubleUntil=0; swanUntil=0; levUntil=0; levMul=1; levSpawned=false;
 
     startAt=now(); endAt=startAt+60000; running=true; tick(); loopSpawn(); scheduleEvents();
-    tip.textContent=`第 ${round+1} 局開始：${current.name}（${labelOf(current.diff)}｜${current.net}） 對戰 ${current.opp}；本局幣：${current.coin}`;
+    tip.textContent=`第 ${round+1} 局开始：${current.name}（${labelOf(current.diff)}｜${current.net}） 对战 ${current.opp}；本局币：${current.coin}`;
   }
 
   function stopAll(){ running=false; clearTimeout(spawnTimerP); clearTimeout(spawnTimerB); clearTimeout(tickTimer); clearTimers(); }
@@ -565,9 +566,9 @@
   startBtn.addEventListener('click', ()=>{ if(!running){ SFX.click(); showCountdown(()=>startGame()); }});
   stopBtn.addEventListener('click', ()=>{ stopAll(); SFX.click(); });
   document.getElementById('surrenderBtn').addEventListener('click', ()=>{ if(running){ endRound('surrender'); SFX.click(); } });
-  muteBtn.addEventListener('click', ()=>{ const on=SFX.toggle(); muteBtn.textContent= on? '🔊 聲音開' : '🔇 聲音關'; SFX.click();});
+  muteBtn.addEventListener('click', ()=>{ const on=SFX.toggle(); muteBtn.textContent= on? '🔊 声音开' : '🔇 声音关'; SFX.click();});
 
-  // 對手選擇器事件
+  // 对手选择器事件
   $('#chooseOppBtn').addEventListener('click', ()=>{ SFX.click(); openOppModal(); });
   $('#oppClose').addEventListener('click', ()=>{ document.getElementById('oppModal').style.display='none'; SFX.click(); });
   Array.from(document.querySelectorAll('#oppModal [data-tier]')).forEach(b=>{
@@ -590,127 +591,127 @@
   restart.addEventListener('click', ()=>{ modal.style.display='none'; showCountdown(()=>startGame()); });
   closeBtn.addEventListener('click', ()=>{ modal.style.display='none'; document.querySelector('.hero').scrollIntoView({behavior:'smooth'}); });
 
-  // 行動裝置：避免點擊韭菜觸發滾動
+  // 行动装置：避免点击韭菜触发滚动
   ;[pLane,bLane].forEach(l=> l.addEventListener('touchstart', e=>{ if(e.target.closest('.chive')||e.target.closest('.hazard')||e.target.closest('.event')) e.preventDefault(); }, {passive:false}));
 
-  // ========= 自動測試（斷言） =========
+  // ========= 自动测试（断言） =========
   (function tests(){
     try{
-      console.group('%c自動測試','color:#10b981;font-weight:700');
-      console.assert(typeof showCountdown==='function','倒數存在');
-      console.assert(typeof genCoin==='function' && genCoin().startsWith('$'),'幣名生成 OK');
-      console.assert(['inner','premarket','outer'].every(k=>DIFFS[k]), '難度 DIFFS 鍵齊全');
-      console.assert(['CZ','鯨魚','DEV','庄家','大老'].every(k=>BOT_PROFILE[k]), '對手 BOT_PROFILE 鍵齊全');
-      // 新增測試：名單與分級
-      console.assert(ROSTER.some(o=>o.tier==='GOD'),'名單包含 GOD');
-      console.assert(ROSTER.some(o=>o.tier==='N'),'名單包含 N');
-      console.assert(NETS.SOL && NETS.BSC, 'NETS 兩條鏈存在');
+      console.group('%c自动测试','color:#10b981;font-weight:700');
+      console.assert(typeof showCountdown==='function','倒数存在');
+      console.assert(typeof genCoin==='function' && genCoin().startsWith('$'),'币名生成 OK');
+      console.assert(['inner','premarket','outer'].every(k=>DIFFS[k]), '难度 DIFFS 键齐全');
+      console.assert(['CZ','鲸鱼','DEV','庄家','大老'].every(k=>BOT_PROFILE[k]), '对手 BOT_PROFILE 键齐全');
+      // 新增测试：名单与分级
+      console.assert(ROSTER.some(o=>o.tier==='GOD'),'名单包含 GOD');
+      console.assert(ROSTER.some(o=>o.tier==='N'),'名单包含 N');
+      console.assert(NETS.SOL && NETS.BSC, 'NETS 两条链存在');
       console.assert(typeof MOVE_CHANCE==='number' && MOVE_CHANCE>0, 'MOVE_CHANCE 存在');
       console.assert(hazardRate(0)>=0 && hazardRate(1)<=0.6, 'hazardRate 合理');
-      console.assert(burstCount(0)>=1 && burstCount(1)>=1, 'burstCount 至少為 1');
+      console.assert(burstCount(0)>=1 && burstCount(1)>=1, 'burstCount 至少为 1');
       console.assert((()=>{const _p=pScore; addScore('p',10); addScore('p',-10); return pScore===_p;})(), 'addScore ±10 可逆（倍率=1）');
-      // 新增測試：幣王×2 與槓桿×2 疊加應 +40U；負分只吃槓桿 -20U
+      // 新增测试：币王×2 与槓杆×2 叠加应 +40U；负分只吃槓杆 -20U
       const save={pScore,bScore,doubleUntil,levUntil,levMul};
       pScore=0; doubleUntil=Date.now()+1000; levUntil=Date.now()+1000; levMul=2;
-      addScore('p',10); console.assert(pScore===40,'正分：幣王×2與槓桿×2 疊加應為 +40U');
-      addScore('p',-10); console.assert(pScore===20,'負分：只吃槓桿×2 應為 -20U，合計剩 20U');
+      addScore('p',10); console.assert(pScore===40,'正分：币王×2与槓杆×2 叠加应为 +40U');
+      addScore('p',-10); console.assert(pScore===20,'负分：只吃槓杆×2 应为 -20U，合计剩 20U');
       ({pScore,bScore,doubleUntil,levUntil,levMul} = save);
       console.groupEnd();
     }catch(e){ console.error('Tests error:', e); }
   })();
 
-  // 對手資料（資產、難度、簡介）
+  // 对手资料（资产、难度、简介）
   const OPP_INFO={
-    '中本聰':{tier:'GOD',money:'700億',lvl:'神',desc:'比特幣創世者，區塊鏈信仰源頭'},
-    '趙長鵬CZ':{tier:'UR',money:'150億',lvl:'神',desc:'幣安創辦人，全球最大交易版圖'},
-    '孫宇晨':{tier:'UR',money:'25億',lvl:'龍',desc:'波場創辦人，話題與資本雙全'},
-    '薛蠻子':{tier:'UR',money:'15億',lvl:'龍',desc:'中國早期天使投資者，政商資源深厚'},
-    '吳忌寒':{tier:'UR',money:'20億',lvl:'龍',desc:'比特大陸創辦人，礦業霸主'},
-    '徐明星':{tier:'UR',money:'20億',lvl:'龍',desc:'OK創辦人，交易所重量級'},
-    '杜均':{tier:'UR',money:'12億',lvl:'龍',desc:'火幣創辦人之一，投資布局深'},
-    '何一':{tier:'UR',money:'10億',lvl:'龍',desc:'幣安聯合創辦人，行銷與社群ICON'},
-    '李林':{tier:'UR',money:'10億',lvl:'龍',desc:'火幣創辦人，華語交易所元老'},
-    'V神':{tier:'UR',money:'6億',lvl:'龍',desc:'以太坊創辦人，智能合約革命者'},
-    'Roger Ver':{tier:'UR',money:'6億',lvl:'龍',desc:'「比特幣耶穌」，早期旗手與分叉論戰中心'},
-    'Yi He':{tier:'UR',money:'8880萬',lvl:'鬼',desc:'幣安靈魂人物，品牌與市場強力推手'},
-    'HongKongDoll':{tier:'UR',money:'6660萬',lvl:'鬼',desc:'港圈熱門KOL，社群穿透高'},
+    '中本聪':{tier:'GOD',money:'700亿',lvl:'神',desc:'比特币创世者，区块链信仰源头'},
+    '赵长鹏CZ':{tier:'UR',money:'150亿',lvl:'神',desc:'币安创办人，全球最大交易版图'},
+    '孙宇晨':{tier:'UR',money:'25亿',lvl:'龙',desc:'波场创办人，话题与资本双全'},
+    '薛蛮子':{tier:'UR',money:'15亿',lvl:'龙',desc:'中国早期天使投资者，政商资源深厚'},
+    '吴忌寒':{tier:'UR',money:'20亿',lvl:'龙',desc:'比特大陆创办人，矿业霸主'},
+    '徐明星':{tier:'UR',money:'20亿',lvl:'龙',desc:'OK创办人，交易所重量级'},
+    '杜均':{tier:'UR',money:'12亿',lvl:'龙',desc:'火币创办人之一，投资布局深'},
+    '何一':{tier:'UR',money:'10亿',lvl:'龙',desc:'币安联合创办人，行销与社群ICON'},
+    '李林':{tier:'UR',money:'10亿',lvl:'龙',desc:'火币创办人，华语交易所元老'},
+    'V神':{tier:'UR',money:'6亿',lvl:'龙',desc:'以太坊创办人，智能合约革命者'},
+    'Roger Ver':{tier:'UR',money:'6亿',lvl:'龙',desc:'「比特币耶稣」，早期旗手与分叉论战中心'},
+    'Yi He':{tier:'UR',money:'8880万',lvl:'鬼',desc:'币安灵魂人物，品牌与市场强力推手'},
+    'HongKongDoll':{tier:'UR',money:'6660万',lvl:'鬼',desc:'港圈热门KOL，社群穿透高'},
 
-    '李啓威':{tier:'SSR',money:'5億',lvl:'龍',desc:'萊特幣創辦人，早期技術派'},
-    'BM':{tier:'SSR',money:'4億',lvl:'龍',desc:'EOS創辦人，曾領潮Web3基礎鏈'},
-    '沈波':{tier:'SSR',money:'3億',lvl:'鬼',desc:'分布式資本合夥人，投資老兵'},
-    '趙東':{tier:'SSR',money:'3億',lvl:'鬼',desc:'DFund創辦人，華語莊家代表'},
-    '周碩基':{tier:'SSR',money:'2億',lvl:'鬼',desc:'FBG創辦人，量化與投資佈局'},
-    '李笑來':{tier:'SSR',money:'2億',lvl:'鬼',desc:'自稱中國比特幣首富，教育與投資圈名人'},
-    '達鴻飛':{tier:'SSR',money:'2億',lvl:'鬼',desc:'NEO創辦人，中國公鏈代表'},
-    '何斌':{tier:'SSR',money:'1億',lvl:'鬼',desc:'imToken創辦人，錢包領域先行者'},
-    '長鋏':{tier:'SSR',money:'1億',lvl:'鬼',desc:'巴比特創辦人，中國鏈圈信息源'},
-    '帥初':{tier:'SSR',money:'1億',lvl:'鬼',desc:'量子鏈創辦人，國產公鏈先鋒'},
-    '韓峯':{tier:'SSR',money:'1億',lvl:'鬼',desc:'亦來雲創辦人，去中心化身份探索'},
-    '江卓爾':{tier:'SSR',money:'1億',lvl:'鬼',desc:'礦池大佬，技術論戰活躍'},
-    '呂旭軍':{tier:'SSR',money:'1億',lvl:'鬼',desc:'萬維鏈創辦人，多鏈跨鏈探索'},
-    '王寶財':{tier:'SSR',money:'8000萬',lvl:'虎',desc:'公信鏈創辦人，技術布道'},
-    '寶二爺':{tier:'SSR',money:'7000萬',lvl:'虎',desc:'幣圈名嘴，自帶話題'},
-    'Dujun(KOL)':{tier:'SSR',money:'3600萬',lvl:'虎',desc:'火幣聯創，投資視野廣'},
-    'WolfyXBT':{tier:'SSR',money:'1888萬',lvl:'虎',desc:'數據流交易KOL'},
-    'Star(OKX)':{tier:'SSR',money:'2220萬',lvl:'虎',desc:'OKX管理層，交易產品推動力量'},
-    'Phyrex':{tier:'SSR',money:'999萬',lvl:'虎',desc:'4XLabs創始人，市場輔導者'},
-    '0xWizard':{tier:'SSR',money:'942萬',lvl:'虎',desc:'DeFi/Memecoin活躍人士'},
-    '余弦':{tier:'SSR',money:'888萬',lvl:'虎',desc:'安全專家，SlowMist創辦人'},
-    '花花':{tier:'SSR',money:'880萬',lvl:'虎',desc:'KOL與交易策略分享者'},
-    '大宇':{tier:'SSR',money:'775萬',lvl:'虎',desc:'華語社群工具流代表'},
-    '熬鷹資本':{tier:'SSR',money:'775萬',lvl:'虎',desc:'投研與流量混合角色'},
-    '川沐':{tier:'SSR',money:'770萬',lvl:'虎',desc:'Solana派交易者'},
-    'Ai姨':{tier:'SSR',money:'690萬',lvl:'虎',desc:'加密玄學內容創作者'},
-    'Goku很Cool':{tier:'SSR',money:'660萬',lvl:'虎',desc:'加密社群與項目協作者'},
-    'Jason':{tier:'SSR',money:'625萬',lvl:'虎',desc:'投研分析KOL'},
-    'Moonlight':{tier:'SSR',money:'610萬',lvl:'虎',desc:'KOL與社群運營者'},
-    '余烬':{tier:'SSR',money:'720萬',lvl:'虎',desc:'鏈上數據搬運與分析'},
-    'Niner九兒':{tier:'SSR',money:'550萬',lvl:'虎',desc:'加密垂直內容創作者'},
-    '火星人':{tier:'SSR',money:'3000萬',lvl:'虎',desc:'初代幣圈紅人'},
-    '趙國峯':{tier:'SSR',money:'3000萬',lvl:'虎',desc:'早期布局投資人'},
-    '申屠青春':{tier:'SSR',money:'3000萬',lvl:'虎',desc:'銀鏈科技創辦人'},
-    '潘國力':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'幣趨勢創辦者'},
-    '黃連金':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'華為區塊鏈專家'},
-    '初夏虎':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'元界創辦人'},
-    '朱嘉偉':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'火幣COO'},
-    '談國鵬':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'巴比特專欄作家'},
-    '巨蟹':{tier:'SSR',money:'2000萬',lvl:'虎',desc:'BTS理事，內容製作者'},
-    '高原飛燕':{tier:'SSR',money:'1000萬',lvl:'虎',desc:'社群型創業者'},
-    '藝緣寶YYBC合夥人 —':{tier:'SSR',money:'未公開',lvl:'神',desc:'跨藝術資產鏈改概念操盤'},
+    '李啓威':{tier:'SSR',money:'5亿',lvl:'龙',desc:'莱特币创办人，早期技术派'},
+    'BM':{tier:'SSR',money:'4亿',lvl:'龙',desc:'EOS创办人，曾领潮Web3基础链'},
+    '沉波':{tier:'SSR',money:'3亿',lvl:'鬼',desc:'分布式资本合伙人，投资老兵'},
+    '赵东':{tier:'SSR',money:'3亿',lvl:'鬼',desc:'DFund创办人，华语庄家代表'},
+    '周硕基':{tier:'SSR',money:'2亿',lvl:'鬼',desc:'FBG创办人，量化与投资佈局'},
+    '李笑来':{tier:'SSR',money:'2亿',lvl:'鬼',desc:'自称中国比特币首富，教育与投资圈名人'},
+    '达鸿飞':{tier:'SSR',money:'2亿',lvl:'鬼',desc:'NEO创办人，中国公链代表'},
+    '何斌':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'imToken创办人，钱包领域先行者'},
+    '长铗':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'巴比特创办人，中国链圈信息源'},
+    '帅初':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'量子链创办人，国产公链先锋'},
+    '韩峯':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'亦来云创办人，去中心化身份探索'},
+    '江卓尔':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'矿池大佬，技术论战活跃'},
+    '吕旭军':{tier:'SSR',money:'1亿',lvl:'鬼',desc:'万维链创办人，多链跨链探索'},
+    '王宝财':{tier:'SSR',money:'8000万',lvl:'虎',desc:'公信链创办人，技术布道'},
+    '宝二爷':{tier:'SSR',money:'7000万',lvl:'虎',desc:'币圈名嘴，自带话题'},
+    'Dujun(KOL)':{tier:'SSR',money:'3600万',lvl:'虎',desc:'火币联创，投资视野广'},
+    'WolfyXBT':{tier:'SSR',money:'1888万',lvl:'虎',desc:'数据流交易KOL'},
+    'Star(OKX)':{tier:'SSR',money:'2220万',lvl:'虎',desc:'OKX管理层，交易产品推动力量'},
+    'Phyrex':{tier:'SSR',money:'999万',lvl:'虎',desc:'4XLabs创始人，市场辅导者'},
+    '0xWizard':{tier:'SSR',money:'942万',lvl:'虎',desc:'DeFi/Memecoin活跃人士'},
+    '余弦':{tier:'SSR',money:'888万',lvl:'虎',desc:'安全专家，SlowMist创办人'},
+    '花花':{tier:'SSR',money:'880万',lvl:'虎',desc:'KOL与交易策略分享者'},
+    '大宇':{tier:'SSR',money:'775万',lvl:'虎',desc:'华语社群工具流代表'},
+    '熬鹰资本':{tier:'SSR',money:'775万',lvl:'虎',desc:'投研与流量混合角色'},
+    '川沐':{tier:'SSR',money:'770万',lvl:'虎',desc:'Solana派交易者'},
+    'Ai姨':{tier:'SSR',money:'690万',lvl:'虎',desc:'加密玄学内容创作者'},
+    'Goku很Cool':{tier:'SSR',money:'660万',lvl:'虎',desc:'加密社群与项目协作者'},
+    'Jason':{tier:'SSR',money:'625万',lvl:'虎',desc:'投研分析KOL'},
+    'Moonlight':{tier:'SSR',money:'610万',lvl:'虎',desc:'KOL与社群运营者'},
+    '余烬':{tier:'SSR',money:'720万',lvl:'虎',desc:'链上数据搬运与分析'},
+    'Niner九儿':{tier:'SSR',money:'550万',lvl:'虎',desc:'加密垂直内容创作者'},
+    '火星人':{tier:'SSR',money:'3000万',lvl:'虎',desc:'初代币圈红人'},
+    '赵国峯':{tier:'SSR',money:'3000万',lvl:'虎',desc:'早期布局投资人'},
+    '申屠青春':{tier:'SSR',money:'3000万',lvl:'虎',desc:'银链科技创办人'},
+    '潘国力':{tier:'SSR',money:'2000万',lvl:'虎',desc:'币趋势创办者'},
+    '黄连金':{tier:'SSR',money:'2000万',lvl:'虎',desc:'华为区块链专家'},
+    '初夏虎':{tier:'SSR',money:'2000万',lvl:'虎',desc:'元界创办人'},
+    '朱嘉伟':{tier:'SSR',money:'2000万',lvl:'虎',desc:'火币COO'},
+    '谈国鹏':{tier:'SSR',money:'2000万',lvl:'虎',desc:'巴比特专栏作家'},
+    '巨蟹':{tier:'SSR',money:'2000万',lvl:'虎',desc:'BTS理事，内容製作者'},
+    '高原飞燕':{tier:'SSR',money:'1000万',lvl:'虎',desc:'社群型创业者'},
+    '艺缘宝YYBC合伙人 —':{tier:'SSR',money:'未公开',lvl:'神',desc:'跨艺术资产链改概念操盘'},
 
-    'Benmo.eth':{tier:'SR',money:'420萬',lvl:'鬼',desc:'DeFi套利社群運營'},
-    'AB Kuai':{tier:'SR',money:'466萬',lvl:'鬼',desc:'KOL與生態參與者'},
-    '子時':{tier:'SR',money:'320萬',lvl:'鬼',desc:'多鏈工具推廣者'},
-    '潛水觀察員':{tier:'SR',money:'125萬',lvl:'虎',desc:'信息觀察帳號'},
-    '冷靜冷靜':{tier:'SR',money:'260萬',lvl:'虎',desc:'風險提示與情緒派'},
-    'Rui':{tier:'SR',money:'298萬',lvl:'虎',desc:'HashKey資本角色'},
-    'Sea':{tier:'SR',money:'188萬',lvl:'虎',desc:'內容＋交易混合KOL'},
-    'Bruce':{tier:'SR',money:'740萬',lvl:'虎',desc:'礦場相關背景'},
-    'Rocky':{tier:'SR',money:'1288萬',lvl:'虎',desc:'長期鏈上副業投資者'},
+    'Benmo.eth':{tier:'SR',money:'420万',lvl:'鬼',desc:'DeFi套利社群运营'},
+    'AB Kuai':{tier:'SR',money:'466万',lvl:'鬼',desc:'KOL与生态参与者'},
+    '子时':{tier:'SR',money:'320万',lvl:'鬼',desc:'多链工具推广者'},
+    '潜水观察员':{tier:'SR',money:'125万',lvl:'虎',desc:'信息观察帐号'},
+    '冷静冷静':{tier:'SR',money:'260万',lvl:'虎',desc:'风险提示与情绪派'},
+    'Rui':{tier:'SR',money:'298万',lvl:'虎',desc:'HashKey资本角色'},
+    'Sea':{tier:'SR',money:'188万',lvl:'虎',desc:'内容＋交易混合KOL'},
+    'Bruce':{tier:'SR',money:'740万',lvl:'虎',desc:'矿场相关背景'},
+    'Rocky':{tier:'SR',money:'1288万',lvl:'虎',desc:'长期链上副业投资者'},
 
-    'Ru7':{tier:'R',money:'240萬',lvl:'虎',desc:'多鏈話題型KOL'},
-    'Cindy胖迪':{tier:'R',money:'298萬',lvl:'虎',desc:'加密女性KOL'},
-    'KingPan':{tier:'R',money:'150萬',lvl:'虎',desc:'社群型投資者'},
+    'Ru7':{tier:'R',money:'240万',lvl:'虎',desc:'多链话题型KOL'},
+    'Cindy胖迪':{tier:'R',money:'298万',lvl:'虎',desc:'加密女性KOL'},
+    'KingPan':{tier:'R',money:'150万',lvl:'虎',desc:'社群型投资者'},
 
-    'XinGPT':{tier:'N',money:'133萬',lvl:'狼',desc:'AI＋加密內容創作新面孔'},
-    'BlueFox':{tier:'N',money:'268萬',lvl:'狼',desc:'Web3筆記型帳號'},
-    'Dot王子':{tier:'N',money:'190萬',lvl:'狼',desc:'DOT生態愛好者'},
-    'MoonApe':{tier:'N',money:'155萬',lvl:'狼',desc:'NFT玩家'},
-    'CryptoMaid':{tier:'N',money:'495萬',lvl:'狼',desc:'娛樂話題創作者'},
-    'JamesX':{tier:'N',money:'52萬',lvl:'狼',desc:'Web3顧問自介帳號'},
-    '小刀':{tier:'N',money:'190萬',lvl:'狼',desc:'合約與情緒流KOL'},
-    'ZeroValue':{tier:'N',money:'88萬',lvl:'狼',desc:'新興加密評論帳'}
+    'XinGPT':{tier:'N',money:'133万',lvl:'狼',desc:'AI＋加密内容创作新面孔'},
+    'BlueFox':{tier:'N',money:'268万',lvl:'狼',desc:'Web3笔记型帐号'},
+    'Dot王子':{tier:'N',money:'190万',lvl:'狼',desc:'DOT生态爱好者'},
+    'MoonApe':{tier:'N',money:'155万',lvl:'狼',desc:'NFT玩家'},
+    'CryptoMaid':{tier:'N',money:'495万',lvl:'狼',desc:'娱乐话题创作者'},
+    'JamesX':{tier:'N',money:'52万',lvl:'狼',desc:'Web3顾问自介帐号'},
+    '小刀':{tier:'N',money:'190万',lvl:'狼',desc:'合约与情绪流KOL'},
+    'ZeroValue':{tier:'N',money:'88万',lvl:'狼',desc:'新兴加密评论帐'}
   };
 
   function updateOppInfo(name){
     const box=document.getElementById('oppInfoBody');
     const info=OPP_INFO[name];
     const tier=tierOf(name); const sym=TIER_SYMBOL[tier]||'';
-    if(!info){ box.innerHTML=`${sym} <b>${name}</b>（${tier}）<br><span class="tag">暫無資料</span>`; return; }
+    if(!info){ box.innerHTML=`${sym} <b>${name}</b>（${tier}）<br><span class="tag">暂无资料</span>`; return; }
     box.innerHTML=`<div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
       <span class="score">${sym} ${name}</span>
-      <span class="tag">資產：${info.money}</span>
-      <span class="tag">難度：${info.lvl}</span>
+      <span class="tag">资产：${info.money}</span>
+      <span class="tag">难度：${info.lvl}</span>
     </div>
     <div style="margin-top:6px">${info.desc}</div>`;
   }
