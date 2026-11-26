@@ -1,222 +1,58 @@
-<!doctype html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff1f6">
-  <meta name="description" content="Mười chiếc mũ phép - 十頂魔法帽。Một bất ngờ hẹn hò / 約會小驚喜。">
-  <title>10 Chiếc Mũ Phép｜10 頂魔法帽 — Kevin ♡ Lò Dơn</title>
-  <style>
-    :root{--ink:#66495e;--rose:#ee729f;--rose-dark:#d95888;--plum:#816397;--purple:#aa92ca;--cream:#fffaf8;--muted:#957e90;--line:#f9d5e3;--font:ui-rounded,"Nunito","Arial Rounded MT Bold",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    *,*::before,*::after{box-sizing:border-box}
-    html{min-width:320px}
-    body{margin:0;min-height:100vh;color:var(--ink);font-family:var(--font);background:radial-gradient(ellipse at 9% 15%,#ffe0ed 0,transparent 34%),radial-gradient(ellipse at 94% 3%,#eee2ff 0,transparent 31%),linear-gradient(170deg,#fff7fa 0%,#fff1f7 56%,#fff7fc 100%)}
-    button{font:inherit;cursor:pointer}
-    button:focus-visible{outline:3px solid var(--rose-dark);outline-offset:4px}
-    .background-stars{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-    .background-stars span{position:absolute;color:#f4b8cf;opacity:.5;font-size:20px;animation:drift 5s ease-in-out infinite}
-    .background-stars span:nth-child(1){top:16%;left:5%}.background-stars span:nth-child(2){top:36%;right:6%;animation-delay:-2s}.background-stars span:nth-child(3){top:72%;left:7%;animation-delay:-1s}.background-stars span:nth-child(4){top:84%;right:9%;animation-delay:-3s}.background-stars span:nth-child(5){top:6%;right:26%;animation-delay:-2.5s}
-    @keyframes drift{50%{transform:translateY(-12px) rotate(12deg)}}
-    .page{position:relative;z-index:1;width:min(1100px,calc(100% - 32px));margin:auto;padding:24px 0 46px}
-    .masthead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
-    .logo{display:inline-flex;align-items:center;gap:10px;font-weight:800;color:#8f6488;letter-spacing:.3px;font-size:13px}
-    .logo-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:14px;color:white;background:linear-gradient(135deg,#f68bad,#b69ae9);box-shadow:0 8px 18px #eeb1c49e;font-size:20px}
-    .header-pill{border:1px solid white;border-radius:999px;background:#ffffffb8;padding:9px 14px;box-shadow:0 8px 18px #e5b4d02d;font-size:12px;text-align:right}
-    .bi{display:inline}
-    .vi{color:inherit}
-    .zh{color:#b27296;font-weight:550}
-    .hero{text-align:center;margin:12px auto 25px;max-width:800px}
-    .eyebrow{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #ffdae7;border-radius:999px;padding:8px 17px;color:#c979a2;font-size:12px;font-weight:700;box-shadow:0 5px 12px #efadc12b}
-    h1{font-size:clamp(28px,4.9vw,50px);letter-spacing:-1px;line-height:1.25;margin:14px 0 9px;font-weight:900;color:#6f4f72;overflow-wrap:normal}
-    h1 .pink{color:#eb76a0}
-    .hero-copy{margin:0 auto;font-size:14px;line-height:1.9;color:#7c687b}
-    .how{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px auto 0}
-    .how-step{border-radius:999px;padding:9px 14px;background:#ffffffa6;border:1px solid #f8d8e5;font-size:12px;color:#806d83}
-    .how-arrow{color:#df8daa;font-size:18px}
-    .board{background:#ffffffa9;border:2px solid white;border-radius:32px;padding:24px 26px 27px;box-shadow:0 16px 45px #c975a21e,0 4px 14px #d3a3bc1a;backdrop-filter:blur(5px)}
-    .board-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 6px 19px}
-    .board-heading strong{font-size:15px;color:#80617d}
-    .board-count{display:inline-block;font-weight:800;border-radius:999px;background:#ffedf4;color:#cf6e97;font-size:12px;padding:7px 13px;white-space:nowrap}
-    .hats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:17px}
-    .hat-option{--accent:#f3a0c4;appearance:none;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:191px;border-radius:23px;border:2px solid #fff;background:linear-gradient(165deg,#fffdfd,#fff0f6);box-shadow:0 7px 18px #df98b623;transition:transform .2s,box-shadow .2s,border-color .2s;overflow:hidden;color:#896b83;padding:12px 7px 15px}
-    .hat-option::before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:var(--accent);opacity:.15;top:3px;left:50%;transform:translateX(-50%)}
-    .hat-option:hover:not(:disabled){transform:translateY(-5px);box-shadow:0 12px 22px #ce8dab3a;border-color:#ffb0c9}
-    .hat-option:active:not(:disabled){transform:translateY(-1px) scale(.98)}
-    .hat-option:disabled{cursor:default}
-    .hat-index{font-weight:900;font-size:11px;color:#bb7397;letter-spacing:2px;align-self:flex-start;margin-left:9px;position:relative;z-index:2}
-    .hat-scene{display:block;position:relative;width:130px;max-width:100%;height:100px;flex:none}
-    .hat-scene::before,.hat-scene::after{content:"✦";position:absolute;color:#f6ad83;font-size:18px;animation:glitter 3s infinite}
-    .hat-scene::before{left:5px;top:8px}.hat-scene::after{right:1px;top:29px;color:#cd9be4;animation-delay:-1.2s}
-    @keyframes glitter{50%{opacity:.42;transform:scale(.67)}}
-    .hat-crown{position:absolute;z-index:2;left:50%;bottom:29px;transform:translateX(-50%);width:73px;height:69px;border-radius:13px 13px 12px 12px;background:linear-gradient(115deg,#70617d 3%,#4a3a5c 60%,#332c42);border:3px solid #9380a0;box-shadow:inset -6px 0 #30273e2b;transform-origin:20% 95%;transition:transform .62s cubic-bezier(.25,.68,.29,1)}
-    .hat-ribbon{position:absolute;z-index:3;bottom:35px;left:50%;transform:translateX(-50%);width:72px;height:18px;border-radius:3px;background:linear-gradient(90deg,var(--accent),#fff0cf,var(--accent));border-top:2px solid #ffffff78;border-bottom:2px solid #ffffff78;transition:transform .62s cubic-bezier(.25,.68,.29,1);transform-origin:-14px 31px}
-    .hat-brim{position:absolute;z-index:4;left:50%;bottom:21px;transform:translateX(-50%);width:112px;max-width:95%;height:22px;border-radius:50%;background:linear-gradient(#6f5b7e,#382f4a);border:3px solid #897598;box-shadow:0 7px 8px #52416422}
-    .hat-option.opening .hat-crown{transform:translate(-50%,-30px) rotate(-16deg)}
-    .hat-option.opening .hat-ribbon{transform:translate(-50%,-30px) rotate(-16deg)}
-    .hat-option.opening .hat-scene::before,.hat-option.opening .hat-scene::after{animation:pop .45s forwards}
-    @keyframes pop{to{transform:translateY(-20px) scale(1.65);opacity:0}}
-    .hat-label{font-size:13px;font-weight:800;color:#815b79;position:relative;z-index:2;line-height:1.5;text-align:center}
-    .hat-label .zh{font-size:11px}
-    .hat-hint{font-size:11px;color:#bd93a8;position:relative;z-index:2}
-    .board-foot{text-align:center;font-size:12px;color:#a18797;margin:22px 0 0}
-    .foot{text-align:center;color:#b18fa2;font-size:12px;margin-top:23px}
-    .overlay{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:#4933439c;backdrop-filter:blur(9px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
-    .overlay.visible{opacity:1;visibility:visible}
-    .dialog{position:relative;width:min(465px,100%);max-height:calc(100dvh - 32px);overflow-y:auto;background:linear-gradient(#fffaff,#fff0f7);border:3px solid white;border-radius:29px;box-shadow:0 22px 70px #33202b77;padding:23px 20px 24px;text-align:center;transform:translateY(18px) scale(.97);transition:transform .36s}
-    .overlay.visible .dialog{transform:translateY(0) scale(1)}
-    .close{position:absolute;right:14px;top:12px;z-index:3;width:36px;height:36px;border:none;border-radius:50%;background:white;color:#9a728b;font-size:24px;line-height:1}
-    .dialog-kicker{font-size:12px;color:#ca779e;font-weight:800;margin-top:2px;margin-right:24px;margin-left:24px}
-    .dialog h2{color:#714e71;font-size:22px;margin:10px 0 4px;line-height:1.5}
-    .dialog-sub{font-size:13px;color:#998092;line-height:1.7;margin:2px 0 15px}
-    .flip-card{position:relative;display:block;cursor:pointer;width:min(276px,100%);height:352px;margin:0 auto;border:none;background:transparent;padding:0;perspective:1000px}
-    .flip-card__inner{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.22,.7,.15,1)}
-    .flip-card.flipped .flip-card__inner{transform:rotateY(180deg)}
-    .card-side{position:absolute;inset:0;border-radius:22px;border:5px solid white;box-shadow:0 12px 23px #bb789c30;backface-visibility:hidden;overflow:hidden}
-    .card-front{background:linear-gradient(150deg,#c6a6eb,#ed9dc2 65%,#ffaac4);display:flex;flex-direction:column;justify-content:space-between;padding:28px 10px;color:#fff}
-    .card-front::before{content:"";position:absolute;inset:13px;border:2px dashed #ffffff9e;border-radius:13px;pointer-events:none}
-    .card-front .question{font-size:99px;line-height:1;color:white;text-shadow:0 5px 10px #a676c25e;font-weight:900}
-    .card-front small{font-size:11px;font-weight:800;letter-spacing:1px}
-    .card-front .heart{font-size:27px}
-    .card-reveal{transform:rotateY(180deg);background:linear-gradient(180deg,#fff 0%,#ffe8f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:16px 15px 18px;color:#805f78}
-    .reveal-tag{font-size:11px;font-weight:800;color:#d2719e}
-    .skyline{width:100%;height:100px;position:relative;overflow:hidden;border-radius:15px;background:linear-gradient(180deg,#f9c0d8 0%,#ddc2f4 65%,#d7a7d3 100%)}
-    .skyline::before{content:"";position:absolute;right:32px;top:12px;width:30px;height:30px;border-radius:50%;background:#fff6d6;box-shadow:0 0 20px #ffe5ab}
-    .skyline::after{content:"";position:absolute;inset:auto 0 0 0;height:44px;background:linear-gradient(90deg,#8c6998 0 13%,transparent 13% 17%,#9a75a3 17% 27%,transparent 27% 33%,#8c6998 33% 39%,transparent 39% 43%,#84608c 43% 60%,transparent 60% 63%,#9c76a8 63% 78%,transparent 78% 83%,#83628d 83%);clip-path:polygon(0 25%,10% 25%,10% 0,17% 0,17% 50%,27% 50%,27% 20%,36% 20%,36% 0,44% 0,44% 37%,55% 37%,55% 2%,65% 2%,65% 44%,75% 44%,75% 13%,85% 13%,85% 45%,100% 45%,100% 100%,0 100%)}
-    .reveal-main{font-size:29px;font-weight:900;line-height:1.1;color:#a65e90;margin:2px 0}
-    .reveal-main .zh{display:block;color:#bc6c9a;font-size:17px;margin-top:6px}
-    .reveal-line{font-size:12px;line-height:1.65;margin:1px 0;color:#795d72}
-    .reveal-line .zh{display:block;color:#ab7899;font-size:12px}
-    .reveal-hearts{color:#e887ad;font-size:17px;letter-spacing:4px}
-    .actions{margin:16px 0 0;display:none;gap:10px;justify-content:center;flex-wrap:wrap}
-    .actions.visible{display:flex}
-    .action{border:0;border-radius:999px;padding:11px 17px;font-size:13px;font-weight:700;background:#ed8eb4;color:#fff;min-width:145px;box-shadow:0 8px 18px #d984a33c}
-    .action.secondary{background:#fff;color:#ac6993;border:1px solid #f3c5d9;box-shadow:none}
-    .action .zh{color:inherit;font-weight:600}
-    .confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-    .confetti i{position:absolute;top:52%;left:50%;font-style:normal;color:#f18dab;opacity:0;font-size:15px;--x:0px;--y:-100px}
-    .overlay.revealed .confetti i{animation:burst .85s forwards}
-    .confetti i:nth-child(1){--x:-130px;--y:-170px}.confetti i:nth-child(2){--x:115px;--y:-160px;animation-delay:.08s!important}.confetti i:nth-child(3){--x:-150px;--y:-45px;animation-delay:.12s!important}.confetti i:nth-child(4){--x:135px;--y:50px;animation-delay:.16s!important}.confetti i:nth-child(5){--x:70px;--y:-190px;animation-delay:.2s!important}.confetti i:nth-child(6){--x:-65px;--y:130px;animation-delay:.25s!important}
-    @keyframes burst{12%{opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(35deg);opacity:0}}
-    @media(max-width:750px){.hats{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.board{padding:19px 16px 20px}.hat-option{min-height:165px}.hat-scene{transform:scale(.92);height:91px}}
-    @media(max-width:480px){h1 span[lang="zh-Hant"]{display:block;font-size:.93em;margin-top:3px}.page{width:min(100% - 20px,1100px);padding-top:14px}.masthead{margin-bottom:18px}.logo{font-size:12px}.logo-icon{width:36px;height:36px}.header-pill{font-size:10px;padding:8px 10px}.hero{margin:6px auto 20px}.hero-copy{font-size:13px}.board{padding:17px 11px 20px;border-radius:24px}.board-heading{padding:0 3px 14px}.board-heading strong{font-size:12px}.board-count{font-size:10px;padding:7px 9px}.hats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.hat-option{min-height:162px;border-radius:18px;padding:10px 5px}.hat-label{font-size:12px}.hat-hint{font-size:10px}.hat-index{margin-left:7px}.dialog{padding:16px 12px 18px;border-radius:23px}.flip-card{height:335px;width:260px}.dialog h2{font-size:19px}.dialog-sub{font-size:12px}.action{font-size:12px}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-  </style>
-</head>
-<body>
-  <div class="background-stars" aria-hidden="true"><span>♥</span><span>✦</span><span>♥</span><span>✦</span><span>♡</span></div>
-  <div class="page">
-    <header class="masthead">
-      <div class="logo"><span class="logo-icon">♡</span><span>Kevin ♡ Lò Dơn</span></div>
-      <div class="header-pill"><span lang="vi">Hẹn hò mỗi tuần</span><span class="zh" lang="zh-Hant">｜每週約會</span></div>
-    </header>
-    <section class="hero" aria-labelledby="heading">
-      <div class="eyebrow">♥ <span lang="vi">Bất ngờ dành cho vợ</span><span lang="zh-Hant">｜給老婆的小驚喜</span> ♥</div>
-      <h1 id="heading"><span lang="vi">10 chiếc <span class="pink">mũ phép</span></span><span lang="zh-Hant">｜10 頂<span class="pink">魔法帽</span></span></h1>
-      <p class="hero-copy"><span lang="vi">Vợ Lò Dơn ơi, hãy chọn một chiếc mũ mà vợ thích nhất nhé!</span><span class="zh" lang="zh-Hant">｜阿單老婆，選一頂妳最喜歡的帽子吧！</span></p>
-      <div class="how" aria-label="抽卡步驟">
-        <span class="how-step"><span lang="vi">1. Chọn mũ</span><span class="zh" lang="zh-Hant">｜選帽子</span></span><span class="how-arrow">→</span>
-        <span class="how-step"><span lang="vi">2. Lật thẻ</span><span class="zh" lang="zh-Hant">｜翻卡片</span></span><span class="how-arrow">→</span>
-        <span class="how-step"><span lang="vi">3. Xem bất ngờ</span><span class="zh" lang="zh-Hant">｜看驚喜</span></span>
-      </div>
-    </section>
-    <main class="board">
-      <div class="board-heading">
-        <strong><span lang="vi">Chọn chiếc mũ may mắn của vợ</span><span class="zh" lang="zh-Hant">｜選一頂幸運魔法帽</span></strong>
-        <span class="board-count"><span lang="vi">10 chiếc mũ</span><span class="zh" lang="zh-Hant">｜10 頂</span></span>
-      </div>
-      <div class="hats" id="hats" aria-label="十頂魔法帽"></div>
-      <p class="board-foot"><span lang="vi">Mỗi chiếc mũ đều giữ một bí mật nho nhỏ đó!</span><span class="zh" lang="zh-Hant">｜每頂帽子都藏著一個小秘密喔！</span></p>
-    </main>
-    <footer class="foot">Made with ♡ for Lò Dơn · 子權的專屬約會小魔法</footer>
-  </div>
-  <div class="overlay" id="overlay" role="presentation" aria-hidden="true">
-    <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle">
-      <button class="close" id="closeBtn" aria-label="Đóng｜關閉" type="button">×</button>
-      <div class="dialog-kicker"><span lang="vi">Lá bài bí mật của vợ</span><span class="zh" lang="zh-Hant">｜老婆的神秘卡片</span></div>
-      <h2 id="dialogTitle"><span lang="vi">Vợ đã chọn mũ số <span id="chosenNumber">01</span>!</span><span class="zh" lang="zh-Hant">｜妳抽到第 <span id="chosenNumberZh">01</span> 頂！</span></h2>
-      <p class="dialog-sub" id="dialogHelp"><span lang="vi">Chạm vào tấm thẻ để mở bất ngờ nhé!</span><span class="zh" lang="zh-Hant">｜點一下卡片，揭曉驚喜吧！</span></p>
-      <button class="flip-card" id="flipCard" type="button" aria-label="Lật thẻ｜翻開卡片">
-        <span class="flip-card__inner">
-          <span class="card-side card-front">
-            <small><span lang="vi">Lá bài bí mật</span><span lang="zh-Hant">｜神秘卡片</span></small>
-            <span class="question">?</span>
-            <span class="heart">♥</span>
-            <small><span lang="vi">Chạm để mở</span><span lang="zh-Hant">｜點擊翻開</span></small>
-          </span>
-          <span class="card-side card-reveal">
-            <span class="reveal-tag"><span lang="vi">Cuộc hẹn tuần này</span><span class="zh" lang="zh-Hant">｜本週約會</span></span>
-            <span class="skyline" aria-hidden="true"></span>
-            <span class="reveal-main"><span lang="vi">Quán bar trên cao</span><span class="zh" lang="zh-Hant">高空餐酒館</span></span>
-            <span class="reveal-line"><span lang="vi">Tuần này chồng sẽ đưa vợ Lò Dơn đến một quán bar trên cao nhé!</span><span class="zh" lang="zh-Hant">這週老公要帶阿單去高空餐酒館喔！</span></span>
-            <span class="reveal-line"><span lang="vi">Cùng ngắm cảnh đêm Đài Loan với chồng nha!</span><span class="zh" lang="zh-Hant">一起陪老公欣賞台灣夜景吧！</span></span>
-            <span class="reveal-hearts">♥ ♥ ♥</span>
-          </span>
-        </span>
-      </button>
-      <div class="actions" id="actions">
-        <button class="action" id="againBtn" type="button"><span lang="vi">Rút lại</span><span class="zh" lang="zh-Hant">｜再抽一次</span></button>
-        <button class="action secondary" id="doneBtn" type="button"><span lang="vi">Đóng</span><span class="zh" lang="zh-Hant">｜關閉</span></button>
-      </div>
-      <div class="confetti" aria-hidden="true"><i>♥</i><i>✦</i><i>♥</i><i>✦</i><i>♡</i><i>✧</i></div>
-    </div>
-  </div>
-  <script>
-    (()=>{
-      const grid=document.getElementById('hats');
-      const overlay=document.getElementById('overlay');
-      const flipCard=document.getElementById('flipCard');
-      const actions=document.getElementById('actions');
-      const dialogHelp=document.getElementById('dialogHelp');
-      const againBtn=document.getElementById('againBtn');
-      const doneBtn=document.getElementById('doneBtn');
-      const closeBtn=document.getElementById('closeBtn');
-      const colors=['#f3a6c0','#edb4a5','#c4b0ec','#a7d7d1','#f4c88f','#e6a5d5','#b9c8ed','#f0b6b3','#bfdbb5','#cab2e2'];
-      let busy=false;
-      let isRevealed=false;
-      let selectedButton=null;
-      let openTimer=null;
-      for(let i=0;i<10;i++){
-        const num=String(i+1).padStart(2,'0');
-        const button=document.createElement('button');
-        button.type='button';button.className='hat-option';button.style.setProperty('--accent',colors[i]);
-        button.setAttribute('aria-label',`Mũ số ${i+1}｜第 ${i+1} 頂魔法帽`);
-        button.innerHTML=`<span class="hat-index">NO. ${num}</span><span class="hat-scene" aria-hidden="true"><span class="hat-crown"></span><span class="hat-ribbon"></span><span class="hat-brim"></span></span><span class="hat-label"><span lang="vi">Mũ số ${num}</span><span class="zh" lang="zh-Hant">｜第 ${num} 頂</span></span><span class="hat-hint"><span lang="vi">Chạm để mở</span><span class="zh" lang="zh-Hant">｜點開</span></span>`;
-        button.addEventListener('click',()=>chooseHat(button,num));
-        grid.appendChild(button);
-      }
-      function chooseHat(button,num){
-        if(busy)return;
-        busy=true;selectedButton=button;isRevealed=false;
-        button.classList.add('opening');
-        document.getElementById('chosenNumber').textContent=num;
-        document.getElementById('chosenNumberZh').textContent=num;
-        openTimer=setTimeout(()=>{
-          overlay.classList.add('visible');overlay.classList.remove('revealed');overlay.setAttribute('aria-hidden','false');
-          document.body.style.overflow='hidden';flipCard.classList.remove('flipped');actions.classList.remove('visible');
-          dialogHelp.innerHTML='<span lang="vi">Chạm vào tấm thẻ để mở bất ngờ nhé!</span><span class="zh" lang="zh-Hant">｜點一下卡片，揭曉驚喜吧！</span>';
-          flipCard.focus();
-        },650);
-      }
-      function reveal(){
-        if(isRevealed)return;
-        isRevealed=true;
-        flipCard.classList.add('flipped');overlay.classList.add('revealed');
-        dialogHelp.innerHTML='<span lang="vi">Vợ yêu rút trúng một buổi hẹn lãng mạn rồi!</span><span class="zh" lang="zh-Hant">｜老婆抽中浪漫約會啦！</span>';
-        actions.classList.add('visible');
-      }
-      function closeDialog(){
-        clearTimeout(openTimer);overlay.classList.remove('visible','revealed');overlay.setAttribute('aria-hidden','true');
-        document.body.style.overflow='';
-        if(selectedButton){selectedButton.classList.remove('opening');selectedButton.focus()}
-        selectedButton=null;busy=false;
-      }
-      flipCard.addEventListener('click',reveal);
-      againBtn.addEventListener('click',closeDialog);
-      doneBtn.addEventListener('click',closeDialog);
-      closeBtn.addEventListener('click',closeDialog);
-      overlay.addEventListener('click',event=>{if(event.target===overlay)closeDialog()});
-      document.addEventListener('keydown',event=>{if(event.key==='Escape'&&overlay.classList.contains('visible'))closeDialog()});
-    })();
-  </script>
-</body>
-</html>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Lò Dơn & Kevin · Chuyện tương lai</title><style>
+*{box-sizing:border-box}body{margin:0;background:#fff6f3;color:#342a31;font:16px/1.6 system-ui,-apple-system,'Segoe UI',sans-serif}main{max-width:760px;margin:auto;padding:24px 16px 48px}header{text-align:center;padding:20px 10px 12px}.heart{font-size:34px;color:#bd5472}h1{font-size:clamp(26px,6vw,40px);line-height:1.2;margin:8px 0}h2{font-size:23px;line-height:1.4;margin:0 0 8px}h3{font-size:17px;margin:0 0 10px}p{margin:8px 0}.zh{display:block;color:#75656d;font-size:.9em;font-weight:400}.card{background:white;border:1px solid #f0dce1;border-radius:22px;padding:22px;margin:16px 0;box-shadow:0 6px 20px #ad65740b}.step{font-size:12px;letter-spacing:1px;color:#96536b;font-weight:700}.progress{height:7px;background:#f0dce1;border-radius:99px;overflow:hidden;margin:8px 0}.bar{height:100%;background:#b95572;transition:width .2s}.q{border:0;padding:18px 0;margin:0;border-bottom:1px solid #f3e6e9;min-width:0}.q:last-child{border-bottom:0}.q legend{float:left;width:100%;font-weight:650;padding:0 0 12px}.q legend+*{clear:both}.opt{display:flex;gap:12px;align-items:flex-start;padding:11px 13px;margin:7px 0;border:1px solid #e9dce0;border-radius:12px;cursor:pointer}.opt:has(input:checked){border-color:#b95572;background:#fff0f4}.opt input{accent-color:#a84a68;width:19px;height:19px;flex:none;margin-top:4px}textarea{font:inherit;width:100%;border:1px solid #e5d5dc;border-radius:12px;min-height:80px;padding:10px;resize:vertical;color:#342a31;background:#fff}textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid #e5a0b8;outline-offset:2px}.buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;margin-top:18px}button{font:inherit;font-weight:650;border:1px solid #e0cbd3;border-radius:13px;padding:12px 17px;background:white;color:#82415a;cursor:pointer;min-height:48px}button.primary{background:#a84968;color:white;border-color:#a84968}button:disabled{opacity:.45;cursor:not-allowed}.fine{font-size:13px;color:#786970}.review{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff9fa;padding:15px;border-radius:12px;font:14px/1.65 system-ui}a{color:#95435e}.consent{display:flex;gap:10px;align-items:flex-start;margin:18px 0}.consent input{width:20px;height:20px;accent-color:#a84968;flex:none;margin-top:4px}[hidden]{display:none!important}footer{text-align:center;color:#8b7480;font-size:13px;margin-top:20px}@media(max-width:420px){.card{padding:16px}.buttons button{flex:1}main{padding:12px 12px 32px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><main><header><div class="heart">♡</div><h1>Chuyện tương lai của chúng mình<span class="zh">我們的未來，一起慢慢討論</span></h1><p>Lò Dơn · Kevin</p></header><section class="card" id="intro"><h2>Gửi vợ Lò Dơn<span class="zh">給阿單老婆</span></h2><p>Chồng muốn hiểu những suy nghĩ thật lòng của vợ, không phải để gây áp lực hay bắt vợ hứa điều gì. Vợ có thể chọn theo ý mình, chọn chưa chắc chắn, bỏ qua câu hỏi hoặc viết thêm. Không có đáp án đúng hay sai.</p><p class="zh">老公想了解妳真實的想法，不是給妳壓力或要求承諾。可以依自己的想法選擇、不確定、跳過或補充。沒有標準答案。</p><p class="fine">Chỉ khi vợ tự nguyện xác nhận và gửi, câu trả lời mới được chuyển đi. Không tự lưu câu trả lời trên thiết bị. <span class="zh">只有妳自願確認寄送才會傳送答案；網站不會自動將答案儲存在裝置上。</span></p><button class="primary" id="start">Bắt đầu · 開始作答</button></section><section id="survey" hidden><div class="step" id="step"></div><div class="progress" role="progressbar" aria-label="Tiến độ" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><div class="bar" id="bar"></div></div><p class="fine" id="count"></p><div id="pages"></div><div class="buttons"><button id="back">← Quay lại · 上一步</button><button id="next" class="primary">Tiếp tục · 下一步 →</button></div></section><section class="card" id="review" hidden><h2>Xem lại câu trả lời<span class="zh">確認完整答案</span></h2><p>Vợ có thể quay lại sửa bất kỳ câu nào trước khi gửi.<span class="zh">寄出前可返回修改任何答案。</span></p><div class="review" id="summary"></div><p class="fine">Người nhận / 收件人：t242642911@gmail.com</p><p class="fine">Nếu gửi trực tiếp, nội dung sẽ đi qua dịch vụ bên thứ ba <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>. Nếu không muốn dùng dịch vụ này, có thể chọn mở ứng dụng email hoặc sao chép nội dung. Không cần ghi thông tin giấy tờ hay địa chỉ riêng tư.<span class="zh">直接寄送會透過第三方 FormSubmit；也可改用自己的郵件程式或複製答案。請勿填寫證件號碼或私人地址。</span></p><label class="consent"><input type="checkbox" id="agree"><span>Tôi tự nguyện gửi những câu trả lời này cho người nhận trên.<span class="zh">我自願將以上答案寄給指定收件人。</span></span></label><form id="sendform" action="https://formsubmit.co/t242642911@gmail.com" method="POST" target="_blank"><input type="hidden" name="_subject" value="Lò Dơn – Chuyện tương lai / 阿單的未來問卷"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden><div id="payload"></div><div class="buttons"><button type="button" id="edit">← Sửa · 返回修改</button><button class="primary" id="send" type="submit" disabled>Gửi câu trả lời · 寄出答案</button></div></form><div class="buttons"><button id="mail" disabled>Mở email · 開啟郵件</button><button id="copy">Sao chép · 複製答案</button><button id="save">Tải TXT · 儲存文字檔</button></div><p class="fine" id="status" role="status" aria-live="polite"></p></section><footer>♡ Từng bước một · 一步一步，坦誠相伴</footer></main><script>
+const groups=[
+{title:['Nếu gặp nhau và phù hợp với mong đợi','見面後符合期待'],desc:['Giả sử khi chồng đến Việt Nam, vợ xác nhận chồng là người thật và phù hợp với mong đợi của vợ.','假設老公抵達越南後，妳確認老公是真人，且符合妳的期待。'],qs:[
+['Nếu anh ấy đồng ý ly hôn, trước khi thủ tục chính thức hoàn tất, vợ muốn sống thế nào?','如果大哥同意離婚，正式完成離婚前，妳希望怎麼安排生活？',[
+['Tạm thời tiếp tục sống cùng anh ấy','暫時繼續與大哥住'],['Tự thuê chỗ ở riêng tại Việt Nam','自己在越南租房'],['Mong chồng xin giấy tờ phù hợp để ở Việt Nam lâu hơn cùng vợ','希望老公申請適合的簽證，長期在越南陪妳'],['Mong chồng hỗ trợ xin visa Đài Loan để ở cùng chồng trong thời gian hợp pháp','希望老公協助申請台灣簽證，合法停留期間一起住']]],
+['Nếu anh ấy không đồng ý ly hôn, vợ muốn làm gì?','如果大哥不同意離婚，妳會怎麼做？',[
+['Tiếp tục trao đổi với anh ấy','繼續溝通'],['Hỏi luật sư và cân nhắc ly hôn đơn phương','尋求律師協助，考慮單方離婚'],['Tạm thời giữ nguyên hiện trạng, chờ thời điểm phù hợp','暫時維持現狀，等待適合時機'],['Không tiếp tục việc ly hôn','放棄離婚']]],
+['Nếu anh ấy không đồng ý và thủ tục kéo dài, vợ muốn sống thế nào trong thời gian đó?','如果大哥不同意，離婚程序需要很久，妳希望期間如何生活？',[
+['Tiếp tục sống cùng anh ấy','繼續與大哥住'],['Chuyển ra ở riêng','自己搬出去'],['Mong chồng ở Việt Nam lâu hơn cùng vợ','希望老公長期在越南陪妳'],['Xin visa Đài Loan và ở cùng chồng trong thời gian hợp pháp','申請台灣簽證，合法停留期間陪老公']]],
+['Nếu anh ấy đồng ý bằng lời nhưng trì hoãn thủ tục, vợ muốn chờ bao lâu?','如果大哥口頭同意卻拖延手續，妳願意等多久？',[
+['Một tháng','一個月'],['Ba tháng','三個月'],['Sáu tháng','半年'],['Không đặt thời hạn cụ thể','沒有特定期限'],['Nếu quá thời hạn mình chấp nhận được thì hỏi luật sư','超過可接受期限就詢問律師']]]]},
+{title:['Nếu gặp nhau nhưng không hoàn toàn như mong đợi','見面後不完全符合期待'],qs:[
+['Nếu chồng là người thật nhưng ngoại hình, tính cách hoặc cách sống không hoàn toàn như vợ mong đợi, vợ muốn làm gì?','如果老公是真人，但外表、個性或相處方式不完全符合期待，妳會怎麼做？',[
+['Dừng mối quan hệ, để chồng về Đài Loan','結束感情，讓老公回台灣'],['Dành thêm thời gian tìm hiểu nhau','再相處一段時間、更深入了解'],['Dù có vài điểm chưa như mong đợi, vẫn muốn tiếp tục mối quan hệ','雖有些地方不如預期，仍願意經營感情'],['Tạm thời chưa quyết định, cần thời gian suy nghĩ','暫不決定，需要時間']]],
+['Trong tình huống trên, vợ còn cân nhắc ly hôn với anh ấy không?','在上述情況下，妳仍會考慮與大哥離婚嗎？',[
+['Có, vì ly hôn là quyết định của chính vợ','會，因為這是自己想做的決定'],['Cần suy nghĩ lại về cuộc hôn nhân','需要重新考慮婚姻'],['Không, muốn tiếp tục cuộc hôn nhân hiện tại','不會，選擇維持婚姻']]],
+['Những điều nào vợ không thể thỏa hiệp khi chọn người yêu? Ví dụ ngoại hình, tính cách, vệ sinh, tài chính, thời gian bên nhau, gia đình hay lối sống.','妳對老公有哪些絕對無法妥協的期待？例如外表、個性、衛生、經濟、陪伴時間、家庭或生活方式。',null]]},
+{title:['Cuộc sống ở Đài Loan','來台灣後的生活'],qs:[
+['Nếu vợ đến Đài Loan hợp pháp nhưng nhà chồng đang cho thuê chưa hết hợp đồng, vợ muốn ở đâu?','若妳合法來台，但老公原本出租的房子租約未到期，妳希望住哪裡？',[
+['Thuê nhà riêng ngay, chồng về bên vợ mỗi ngày sau giờ làm','直接租房，老公每天下班回去陪妳'],['Thử ở cùng gia đình chồng, nếu không phù hợp thì chuyển ra','先與老公家人同住，不適應再搬'],['Ở cùng gia đình chồng đến khi hết hợp đồng thuê','與老公家人住到租約到期'],['Chờ đến khi có nhà riêng rồi mới cân nhắc sang Đài Loan','等房子收回後再考慮來台']]],
+['Khi chồng đi làm ban ngày, vợ muốn dành thời gian làm gì? (Có thể chọn nhiều)','老公白天上班時，妳希望怎麼安排時間？（可複選）',[
+['Học tiếng Trung','學中文'],['Học kỹ năng khác','學其他技能'],['Khám phá môi trường ở Đài Loan','認識台灣環境'],['Nghỉ ngơi và làm điều mình thích','休息、做喜歡的事'],['Tìm công việc khi có quyền làm việc hợp pháp','取得合法工作資格後找工作']],true],
+['Nếu có khác biệt về thói quen hay quan điểm với gia đình chồng, vợ muốn chồng xử lý thế nào?','若與老公家人有生活習慣或觀念差異，妳希望老公怎麼處理？',null]]},
+{title:['Học tập và kế hoạch tương lai','中文學習與未來發展'],qs:[
+['Nếu quyết định sang Đài Loan, vợ muốn sắp xếp khóa tiếng Trung hiện tại thế nào?','如果確定來台，妳希望如何安排現在的中文課程？',[
+['Học hết khóa ở Việt Nam rồi sang Đài Loan','在越南完成課程再來台'],['Chuyển sang lớp trực tuyến của trung tâm hiện tại nếu có','改成原補習班線上課程（若提供）'],['Dừng khóa ở Việt Nam và đăng ký lớp tiếng Trung ở Đài Loan','中斷越南課程，來台重新報名'],['Tự học trước rồi quyết định','先自學再決定']]],
+['Sau khi sang Đài Loan, vợ muốn cuộc sống tương lai như thế nào? (Có thể chọn nhiều)','來台以後，妳希望未來生活是什麼樣子？（可複選）',[
+['Học tiếng Trung và kỹ năng khác','學中文與其他技能'],['Cùng chồng kinh doanh cửa hàng','與老公一起經營店面'],['Tìm công việc mình thích khi đủ điều kiện hợp pháp','取得合法資格後找喜歡的工作'],['Tiếp tục học lên','繼續升學'],['Chăm sóc gia đình','照顧家庭']],true],
+['Nếu không được cấp visa Đài Loan hoặc chỉ được ở ngắn hạn, vợ muốn sắp xếp thế nào? (Có thể chọn nhiều)','若台灣簽證未通過或只能短期停留，妳希望怎麼安排？（可複選）',[
+['Tạm thời tiếp tục yêu xa','暫時維持遠距離'],['Mong chồng định kỳ đến Việt Nam nếu có thể','希望老公可行時定期赴越'],['Tìm cách sang Đài Loan hợp pháp khác','尋找其他合法來台方式'],['Ưu tiên giải quyết ly hôn và học tập trước rồi mới bàn tương lai','先處理離婚與學習再談未來']],true]]},
+{title:['Những suy nghĩ thật lòng','感情與離婚的真實想法'],qs:[
+['Nếu chồng chưa từng xuất hiện trong cuộc đời vợ, vợ vẫn muốn ly hôn với anh ấy không?','假設老公從未出現在妳生命中，妳仍會想跟大哥離婚嗎？',[
+['Có','會'],['Không','不會'],['Cần suy nghĩ thêm','需要再想想']]],
+['Nếu anh ấy thay đổi, tôn trọng tự do của vợ, dành thời gian bên vợ, ủng hộ việc học và đáp ứng nhu cầu cuộc sống, vợ có cân nhắc lại cuộc hôn nhân không?','如果大哥改變，尊重妳自由、陪伴妳、支持上課並滿足生活需求，妳會重新考慮婚姻嗎？',[
+['Có','會'],['Không','不會'],['Cần thêm thời gian để suy nghĩ','需要時間思考']]],
+['Nếu sau khi ly hôn anh ấy không còn hỗ trợ tài chính cho vợ hoặc gia đình vợ, vợ đã nghĩ đến cách sắp xếp cuộc sống chưa?','離婚後大哥若停止對妳或家人的經濟支援，妳是否考慮過生活安排？',[
+['Đã có kế hoạch','已經有計畫'],['Đang cân nhắc','正在考慮'],['Chưa có kế hoạch','還沒有計畫']],false],
+['Nếu vợ chọn ly hôn, bố mẹ và chị gái có thể phản ứng thế nào? Nếu họ phản đối, vợ muốn xử lý ra sao?','若妳選擇離婚，爸媽、姐姐可能有什麼反應？若他們反對，妳會怎麼處理？',null],
+['Nếu sau này chúng ta cãi nhau hoặc chồng có điều làm chưa tốt, vợ muốn hai đứa giải quyết thế nào?','若未來吵架或老公做得不夠好，妳希望兩人如何解決？',null],
+['Điều gì khiến vợ lo lắng nhất về ly hôn? (Có thể chọn nhiều)','妳目前對離婚最大的顧慮是什麼？（可複選）',[
+['Anh ấy không đồng ý','大哥不同意'],['Gia đình phản đối','家人反對'],['Tài chính trong tương lai','未來經濟'],['Thủ tục quá phức tạp','程序太複雜'],['Chồng không giống như vợ tưởng tượng','老公不符合期待'],['Vẫn có tình cảm hoặc lưu luyến với anh ấy','仍對大哥有感情或不捨']],true],
+['Trước khi chồng đến Việt Nam, vợ muốn tự chuẩn bị hay tìm hiểu những gì? Có điều gì mong chồng hỗ trợ?','老公抵達越南前，妳願意先準備或了解哪些事？希望老公協助哪些事？',null]]}];
+const $=id=>document.getElementById(id);const pages=$('pages');let idx=0;let id=0;const all=[];function node(tag,cls,txt){let e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}function bilingual(el,vi,zh){el.append(document.createTextNode(vi),node('span','zh',zh));return el}
+for(const g of groups){const page=node('section','card');page.hidden=true;page.append(bilingual(node('h2'),...g.title));if(g.desc)page.append(bilingual(node('p'),...g.desc));for(const q of g.qs){const n=++id;const fs=node('fieldset','q');fs.append(bilingual(node('legend'),n+'. '+q[0],q[1]));const opts=[];if(q[2]){const list=[...q[2],['Chưa chắc chắn','還不確定'],['Ý kiến khác (ghi thêm bên dưới)','其他（請在下方補充）']];for(const [i,pair] of list.entries()){const label=node('label','opt');const inp=node('input');inp.type=q[3]?'checkbox':'radio';inp.name='q'+n;inp.value=pair.join(' / ');label.append(inp,bilingual(node('span'),...pair));fs.append(label);opts.push(inp);if(q[3])inp.addEventListener('change',()=>{if(!inp.checked)return;const unsure=opts[opts.length-2];if(inp===unsure)opts.forEach(x=>{if(x!==inp)x.checked=false});else if(unsure)unsure.checked=false;});}}
+const ta=node('textarea');ta.id='note'+n;ta.placeholder=q[2]?'Ghi thêm nếu muốn / 選填補充':'Viết suy nghĩ của vợ / 寫下妳的想法（可跳過）';ta.setAttribute('aria-label','Câu '+n+' / 第'+n+'題補充');fs.append(ta);page.append(fs);all.push({n,q,opts,ta});}pages.append(page);}
+function answered(a){return a.opts.some(x=>x.checked)||a.ta.value.trim()!==''}function refresh(){const c=all.filter(answered).length;$('count').textContent=`Đã trả lời ${c}/20 · 已回答 ${c}/20（可跳過）`;$('bar').style.width=c/20*100+'%';document.querySelector('.progress').setAttribute('aria-valuenow',c);}
+function show(i){idx=i;$('intro').hidden=true;$('review').hidden=true;$('survey').hidden=false;Array.from(pages.children).forEach((p,j)=>p.hidden=i!==j);$('step').textContent=`PHẦN ${i+1} / ${groups.length} · 第 ${i+1} 部分`;$('back').textContent=i===0?'← Giới thiệu · 說明':'← Quay lại · 上一步';$('next').textContent=i===groups.length-1?'Xem lại · 確認答案 →':'Tiếp tục · 下一步 →';refresh();window.scrollTo(0,0)}
+function answer(a){let selected=a.opts.filter(x=>x.checked).map(x=>x.value);let extra=a.ta.value.trim();return [selected.join('\n'),extra?'Ghi chú / 補充：'+extra:''].filter(Boolean).join('\n')||'Chưa trả lời / 未作答';}
+function textSummary(){return 'Lò Dơn – Chuyện tương lai / 阿單的未來問卷\n\n'+all.map(a=>`${a.n}. ${a.q[0]}\n${a.q[1]}\n${answer(a)}`).join('\n\n');}
+function review(){ $('survey').hidden=true;$('review').hidden=false;$('summary').textContent=textSummary();$('agree').checked=false;toggle();$('status').textContent='';window.scrollTo(0,0); }
+function toggle(){$('send').disabled=$('mail').disabled=!$('agree').checked;}
+$('start').onclick=()=>show(0);$('back').onclick=()=>{if(idx===0){$('survey').hidden=true;$('intro').hidden=false;window.scrollTo(0,0)}else show(idx-1)};$('next').onclick=()=>idx===groups.length-1?review():show(idx+1);$('edit').onclick=()=>show(idx);$('agree').onchange=toggle;pages.addEventListener('input',refresh);
+$('sendform').addEventListener('submit',e=>{if(!$('agree').checked){e.preventDefault();return;}if(!/^https?:$/.test(location.protocol)){e.preventDefault();$('status').textContent='Trang đang mở từ tệp. Hãy dùng email hoặc mở trang đã được đăng lên web. / 目前為本機檔案，請使用開啟郵件或先將網站部署上線。';return;}const payload=$('payload');payload.replaceChildren();for(const a of all){const input=node('input');input.type='hidden';input.name=`${a.n}. ${a.q[0]} / ${a.q[1]}`;input.value=answer(a);payload.append(input)}$('status').textContent='Đã mở trang gửi của FormSubmit. Hãy kiểm tra thông báo ở trang mới; chưa xác nhận email đã đến. / 已開啟寄送頁，請查看新頁面的結果；尚未確認郵件已送達。';});
+$('mail').onclick=()=>{if(!$('agree').checked)return;const body=encodeURIComponent(textSummary());if(body.length>12000){$('status').textContent='Nội dung dài; hãy sao chép hoặc tải TXT rồi dán vào email. / 內容較長，請複製或下載 TXT 再貼入郵件。';return;}location.href='mailto:t242642911@gmail.com?subject='+encodeURIComponent('Lò Dơn – Chuyện tương lai / 阿單的未來問卷')+'&body='+body;$('status').textContent='Hãy kiểm tra và bấm gửi trong ứng dụng email. / 請在郵件程式內確認並按寄出。';};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(textSummary());$('status').textContent='Đã sao chép / 已複製';}catch{const t=node('textarea');t.value=textSummary();$('status').replaceChildren(t);t.select();}};$('save').onclick=()=>{const u=URL.createObjectURL(new Blob([textSummary()],{type:'text/plain;charset=utf-8'}));const a=node('a');a.href=u;a.download='Lo-Don-answers.txt';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+</script></body></html>
